@@ -1,1 +1,581 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shërbimet Tona - Dritare Dixhitale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS KODI - DUPLIKUAR NGA INDEX.HTML */
+        /* ... (Kopjoni të gjithë CSS-in nga index.html këtu) ... */
 
+        :root {
+            --primary-color: #007bff; /* Blue */
+            --secondary-color: #6c757d; /* Gray */
+            --light-bg: #f8f9fa; /* Very light gray */
+            --lighter-bg: #ffffff; /* Pure white */
+            --text-dark: #343a40; /* Dark gray */
+            --text-muted: #6c757d; /* Muted gray */
+            --accent-color: #28a745; /* Green for highlights/buttons */
+            --accent-glow: #00bcd4; /* Cyan for subtle glow */
+            --gradient-background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%); /* Light blue to purple */
+            --box-shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --border-light: #e9ecef; /* Lighter border */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigacion */
+        header {
+            background-color: var(--lighter-bg);
+            padding: 15px 0;
+            position: sticky; /* sticky instead of fixed for initial content */
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--box-shadow-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 17px;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background-color: var(--accent-color);
+            left: 50%;
+            bottom: -5px;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section (only on index.html) */
+        #home {
+            background: var(--gradient-background);
+            color: #fff;
+            min-height: calc(100vh - 75px); /* Adjust for header height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* For floating objects */
+            padding-top: 80px; /* Adjust for fixed header */
+            display: none; /* Only for index.html */
+        }
+
+        /* Floating Objects (only on index.html) */
+        .floating-object {
+            display: none; /* Only for index.html */
+        }
+
+        /* General Section Styling for other pages */
+        section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--light-bg);
+            /* min-height removed for separate pages */
+            display: flex;
+            align-items: center;
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--lighter-bg);
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 10px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            border-radius: 2px;
+        }
+
+        /* Shërbimet Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-item {
+            background-color: var(--lighter-bg);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 1px solid var(--border-light);
+            position: relative;
+            box-shadow: var(--box-shadow-light);
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-color);
+        }
+
+        .service-item h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .service-item p {
+            color: var(--text-muted);
+        }
+
+        /* Pse Ne Section */
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .why-us-item {
+            background-color: var(--lighter-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--box-shadow-light);
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .why-us-item:hover {
+            transform: scale(1.03);
+            background-color: var(--light-bg);
+            border-color: var(--accent-color);
+        }
+
+        .why-us-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .why-us-item p {
+            color: var(--text-muted);
+        }
+
+        /* Portofolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background-color: var(--lighter-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border: 1px solid var(--border-light);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .portfolio-item-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .portfolio-item-info h3 {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .portfolio-item-info p {
+            color: var(--text-muted);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(to right, var(--lighter-bg), var(--light-bg));
+        }
+
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .contact-form, .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--lighter-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--box-shadow-light);
+            border: 1px solid var(--border-light);
+        }
+
+        .contact-form h3, .contact-info h3 {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            font-size: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info p strong {
+            color: var(--text-dark);
+            margin-right: 10px;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: var(--primary-color);
+            font-size: 28px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--lighter-bg);
+            color: var(--text-muted);
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid var(--border-light);
+        }
+
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-on-scroll.delay-1 { transition-delay: 0.1s; }
+        .animate-on-scroll.delay-2 { transition-delay: 0.2s; }
+        .animate-on-scroll.delay-3 { transition-delay: 0.3s; }
+        .animate-on-scroll.delay-4 { transition-delay: 0.4s; }
+        .animate-on-scroll.delay-5 { transition-delay: 0.5s; }
+        .animate-on-scroll.delay-6 { transition-delay: 0.6s; }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 7vw;
+            }
+            .hero-content p {
+                font-size: 2.5vw;
+            }
+            .services-grid, .why-us-grid, .portfolio-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            h2 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Simple hiding for mobile, for a real project use a hamburger menu */
+            }
+            .hero-content h1 {
+                font-size: 10vw;
+            }
+            .hero-content p {
+                font-size: 4vw;
+            }
+            .btn {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+            h2 {
+                font-size: 32px;
+                margin-bottom: 40px;
+            }
+            section {
+                padding: 80px 0;
+            }
+            .contact-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .contact-form, .contact-info {
+                min-width: unset;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 22px;
+            }
+            .hero-content h1 {
+                font-size: 12vw;
+            }
+            .hero-content p {
+                font-size: 4.5vw;
+            }
+            .service-item, .why-us-item, .portfolio-item {
+                padding: 25px;
+            }
+            .service-item h3 {
+                font-size: 22px;
+            }
+            .why-us-item h3 {
+                font-size: 20px;
+            }
+            .portfolio-item-info h3 {
+                font-size: 20px;
+            }
+            h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Dritare Dixhitale</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Ballina</a></li>
+                    <li><a href="sherbimet.html" class="active">Shërbimet</a></li>
+                    <li><a href="pse-ne.html">Pse Ne?</a></li>
+                    <li><a href="portfolio.html">Portofolio</a></li>
+                    <li><a href="kontakti.html">Kontakti</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="services">
+        <div class="container">
+            <h2 class="animate-on-scroll">Shërbimet Tona Kryesore</h2>
+            <div class="services-grid">
+                <div class="service-item animate-on-scroll delay-1">
+                    <h3>SEO & Optimizim</h3>
+                    <p>Rrisni dukshmërinë tuaj në motorët e kërkimit dhe tërhiqni më shumë trafik organik.</p>
+                </div>
+                <div class="service-item animate-on-scroll delay-2">
+                    <h3>Marketing në Rrjete Sociale</h3>
+                    <p>Ndërtoni një prani të fortë në rrjetet sociale, angazhoni audiencën dhe rritni markën tuaj.</p>
+                </div>
+                <div class="service-item animate-on-scroll delay-3">
+                    <h3>Reklamim PPC</h3>
+                    <p>Krijoni dhe menaxhoni fushata të suksesshme me pagesë për klikim (PPC) në Google Ads dhe Meta Ads.</p>
+                </div>
+                <div class="service-item animate-on-scroll delay-4">
+                    <h3>Marketing me Përmbajtje</h3>
+                    <p>Krijoni përmbajtje të vlefshme dhe bindëse që tërheq, angazhon dhe shndërron.</p>
+                </div>
+                <div class="service-item animate-on-scroll delay-5">
+                    <h3>Dizajn & Zhvillim Ueb</h3>
+                    <p>Krijojmë faqe interneti funksionale dhe tërheqëse, të optimizuara për performancë.</p>
+                </div>
+                <div class="service-item animate-on-scroll delay-6">
+                    <h3>Marketing me Email</h3>
+                    <p>Ndërtoni lista, segmentoni audiencën dhe dërgoni fushata emaili efikase.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Dritare Dixhitale. Të gjitha të drejtat të rezervuara.</p>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        /* JAVASCRIPT KODI - DUPLIKUAR NGA INDEX.HTML */
+        /* ... (Kopjoni të gjithë JavaScript-in nga index.html këtu) ... */
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Highlight active navigation link
+            const currentPath = window.location.pathname.split('/').pop(); // Gets the filename
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                const linkPath = link.getAttribute('href');
+                if (linkPath === currentPath || (currentPath === '' && linkPath === 'index.html')) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Scroll-triggered Animations using IntersectionObserver
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observerOptions = {
+                root: null, // relative to the viewport
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
