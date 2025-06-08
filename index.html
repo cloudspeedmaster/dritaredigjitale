@@ -10,20 +10,23 @@
     <style>
         /*
         -------------------------------------------------------------
-        CSS KODI
-        Të gjitha stilet janë kombinuar këtu.
+        CSS KODI (I përfshirë direkt në këtë HTML)
+        Temë e lehtë me thekse të ndritshme.
         -------------------------------------------------------------
         */
 
         :root {
-            --primary-color: #6a11cb; /* Vibrant Purple */
-            --secondary-color: #2575fc; /* Bright Blue */
-            --dark-bg: #1a1a2e; /* Dark Background */
-            --darker-bg: #16213e; /* Slightly darker background */
-            --text-light: #e0e0e0; /* Light text for contrast */
-            --text-dark: #cccccc; /* Slightly darker light text */
-            --accent-glow: #00f0ff; /* Cyan glow */
-            --gradient-background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --primary-color: #007bff; /* Blue */
+            --secondary-color: #6c757d; /* Gray */
+            --light-bg: #f8f9fa; /* Very light gray */
+            --lighter-bg: #ffffff; /* Pure white */
+            --text-dark: #343a40; /* Dark gray */
+            --text-muted: #6c757d; /* Muted gray */
+            --accent-color: #28a745; /* Green for highlights/buttons */
+            --accent-glow: #00bcd4; /* Cyan for subtle glow */
+            --gradient-background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%); /* Light blue to purple */
+            --box-shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --border-light: #e9ecef; /* Lighter border */
         }
 
         * {
@@ -38,8 +41,8 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-light);
+            background-color: var(--light-bg);
+            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden; /* Prevent horizontal scroll due to animations */
         }
@@ -52,13 +55,14 @@
 
         /* Header & Navigacion */
         header {
-            background-color: rgba(26, 26, 46, 0.9); /* Slightly transparent */
+            background-color: var(--lighter-bg);
             padding: 15px 0;
-            position: fixed;
-            width: 100%;
+            position: sticky;
             top: 0;
+            width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--box-shadow-light);
+            border-bottom: 1px solid var(--border-light);
         }
 
         nav {
@@ -71,8 +75,8 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 28px;
             font-weight: 700;
-            color: var(--accent-glow);
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+            color: var(--primary-color);
+            text-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
         }
 
         .nav-links {
@@ -85,7 +89,7 @@
         }
 
         .nav-links a {
-            color: var(--text-light);
+            color: var(--text-dark);
             text-decoration: none;
             font-weight: 600;
             font-size: 17px;
@@ -99,18 +103,20 @@
             position: absolute;
             width: 0;
             height: 3px;
-            background-color: var(--accent-glow);
+            background-color: var(--accent-color);
             left: 50%;
             bottom: -5px;
             transform: translateX(-50%);
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-glow);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-color);
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
             width: 100%;
         }
 
@@ -118,7 +124,7 @@
         #home {
             background: var(--gradient-background);
             color: #fff;
-            min-height: 100vh;
+            min-height: calc(100vh - 75px); /* Adjust for header height */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -131,6 +137,8 @@
         .hero-content {
             z-index: 10;
             position: relative;
+            color: #fff; /* Ensure text is white on dark gradient */
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .hero-content h1 {
@@ -143,8 +151,8 @@
         }
 
         @keyframes textGlow {
-            from { text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow); }
-            to { text-shadow: 0 0 20px var(--accent-glow), 0 0 30px var(--accent-glow); }
+            from { text-shadow: 0 0 10px rgba(255,255,255,0.3), 0 0 20px rgba(255,255,255,0.2); }
+            to { text-shadow: 0 0 20px rgba(255,255,255,0.4), 0 0 30px rgba(255,255,255,0.3); }
         }
 
         .hero-content p {
@@ -157,8 +165,8 @@
         }
 
         .btn {
-            background-color: var(--accent-glow);
-            color: var(--dark-bg);
+            background-color: var(--accent-color);
+            color: #fff;
             padding: 15px 30px;
             text-decoration: none;
             border-radius: 50px;
@@ -168,7 +176,7 @@
             position: relative;
             overflow: hidden;
             display: inline-block;
-            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.4);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
         }
 
         .btn::before {
@@ -178,7 +186,7 @@
             left: 50%;
             width: 300%;
             height: 300%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             transition: all 0.7s ease-in-out;
             border-radius: 50%;
             z-index: 0;
@@ -192,16 +200,16 @@
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 240, 255, 0.6);
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.6);
         }
 
-        /* Floating Objects */
+        /* Floating Objects (vetëm në faqen Home) */
         .floating-object {
             position: absolute;
             animation-duration: 15s;
             animation-timing-function: ease-in-out;
             animation-iteration-count: infinite;
-            opacity: 0.2;
+            opacity: 0.1; /* More subtle for light theme */
             filter: blur(2px);
             z-index: 1;
         }
@@ -209,7 +217,7 @@
         .floating-object.circle {
             width: 100px;
             height: 100px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             animation-name: floatAnimationOne;
         }
@@ -217,7 +225,7 @@
         .floating-object.square {
             width: 80px;
             height: 80px;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.08);
             transform: rotate(45deg);
             animation-name: floatAnimationTwo;
         }
@@ -227,26 +235,26 @@
             height: 0;
             border-left: 50px solid transparent;
             border-right: 50px solid transparent;
-            border-bottom: 80px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 80px solid rgba(255, 255, 255, 0.06);
             animation-name: floatAnimationThree;
         }
 
         @keyframes floatAnimationOne {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.2; }
-            50% { transform: translate(50px, 30px) rotate(180deg); opacity: 0.3; }
-            100% { transform: translate(0, 0) rotate(360deg); opacity: 0.2; }
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.1; }
+            50% { transform: translate(50px, 30px) rotate(180deg); opacity: 0.15; }
+            100% { transform: translate(0, 0) rotate(360deg); opacity: 0.1; }
         }
 
         @keyframes floatAnimationTwo {
-            0% { transform: translate(0, 0) rotate(45deg); opacity: 0.15; }
-            50% { transform: translate(-40px, -20px) rotate(225deg); opacity: 0.25; }
-            100% { transform: translate(0, 0) rotate(405deg); opacity: 0.15; }
+            0% { transform: translate(0, 0) rotate(45deg); opacity: 0.08; }
+            50% { transform: translate(-40px, -20px) rotate(225deg); opacity: 0.12; }
+            100% { transform: translate(0, 0) rotate(405deg); opacity: 0.08; }
         }
 
         @keyframes floatAnimationThree {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.1; }
-            50% { transform: translate(30px, -50px) rotate(180deg); opacity: 0.2; }
-            100% { transform: translate(0, 0) rotate(360deg); opacity: 0.1; }
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.06; }
+            50% { transform: translate(30px, -50px) rotate(180deg); opacity: 0.1; }
+            100% { transform: translate(0, 0) rotate(360deg); opacity: 0.06; }
         }
 
         /* General Section Styling */
@@ -254,14 +262,13 @@
             padding: 100px 0;
             position: relative;
             overflow: hidden;
-            background-color: var(--darker-bg);
-            min-height: 100vh;
+            background-color: var(--light-bg);
             display: flex;
             align-items: center;
         }
 
         section:nth-of-type(even) {
-            background-color: var(--dark-bg);
+            background-color: var(--lighter-bg);
         }
 
         h2 {
@@ -269,7 +276,7 @@
             font-size: 48px;
             text-align: center;
             margin-bottom: 60px;
-            color: var(--accent-glow);
+            color: var(--primary-color);
             position: relative;
             padding-bottom: 10px;
             display: inline-block;
@@ -281,7 +288,7 @@
             position: absolute;
             width: 80px;
             height: 4px;
-            background: var(--gradient-background);
+            background: var(--accent-color);
             left: 50%;
             transform: translateX(-50%);
             bottom: 0;
@@ -296,51 +303,30 @@
         }
 
         .service-item {
-            background-color: var(--dark-bg);
+            background-color: var(--lighter-bg);
             padding: 40px;
             border-radius: 15px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 1px solid var(--border-light);
             position: relative;
-            overflow: hidden;
+            box-shadow: var(--box-shadow-light);
         }
 
-        .service-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-background);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 0;
-        }
-
-        .service-item:hover::before {
-            opacity: 0.1;
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-color);
         }
 
         .service-item h3 {
             font-size: 26px;
             margin-bottom: 15px;
-            color: var(--text-light);
-            position: relative;
-            z-index: 1;
+            color: var(--primary-color);
         }
 
         .service-item p {
-            color: var(--text-dark);
-            position: relative;
-            z-index: 1;
-        }
-
-        .service-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            border-color: var(--accent-glow);
+            color: var(--text-muted);
         }
 
         /* Pse Ne Section */
@@ -352,18 +338,18 @@
         }
 
         .why-us-item {
-            background-color: var(--dark-bg);
+            background-color: var(--lighter-bg);
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--box-shadow-light);
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            border: 1px solid var(--border-light);
         }
 
         .why-us-item:hover {
-            transform: scale(1.05);
-            background-color: var(--darker-bg);
-            border-color: var(--primary-color);
+            transform: scale(1.03);
+            background-color: var(--light-bg);
+            border-color: var(--accent-color);
         }
 
         .why-us-item h3 {
@@ -373,7 +359,7 @@
         }
 
         .why-us-item p {
-            color: var(--text-dark);
+            color: var(--text-muted);
         }
 
         /* Portofolio Section */
@@ -384,19 +370,20 @@
         }
 
         .portfolio-item {
-            background-color: var(--dark-bg);
+            background-color: var(--lighter-bg);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--box-shadow-light);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
+            border: 1px solid var(--border-light);
         }
 
         .portfolio-item img {
             width: 100%;
             height: 200px;
             object-fit: cover;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-light);
         }
 
         .portfolio-item-info {
@@ -406,22 +393,22 @@
 
         .portfolio-item-info h3 {
             font-size: 24px;
-            color: var(--accent-glow);
+            color: var(--primary-color);
             margin-bottom: 10px;
         }
 
         .portfolio-item-info p {
-            color: var(--text-dark);
+            color: var(--text-muted);
         }
 
         .portfolio-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
         /* Contact Section */
         #contact {
-            background: linear-gradient(to right, var(--darker-bg), var(--dark-bg));
+            background: linear-gradient(to right, var(--lighter-bg), var(--light-bg));
         }
 
         .contact-content {
@@ -435,16 +422,16 @@
         .contact-form, .contact-info {
             flex: 1;
             min-width: 300px;
-            background-color: var(--dark-bg);
+            background-color: var(--lighter-bg);
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--box-shadow-light);
+            border: 1px solid var(--border-light);
         }
 
         .contact-form h3, .contact-info h3 {
             font-size: 28px;
-            color: var(--accent-glow);
+            color: var(--primary-color);
             margin-bottom: 30px;
             text-align: center;
         }
@@ -456,7 +443,7 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: var(--text-light);
+            color: var(--text-dark);
             font-weight: 600;
         }
 
@@ -464,19 +451,19 @@
         .form-group textarea {
             width: 100%;
             padding: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--border-light);
             border-radius: 8px;
-            background-color: var(--darker-bg);
-            color: var(--text-light);
+            background-color: var(--light-bg);
+            color: var(--text-dark);
             font-size: 16px;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--accent-glow);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
         }
 
         .form-group textarea {
@@ -486,13 +473,13 @@
 
         .contact-info p {
             margin-bottom: 15px;
-            color: var(--text-dark);
+            color: var(--text-muted);
             display: flex;
             align-items: center;
         }
 
         .contact-info p strong {
-            color: var(--text-light);
+            color: var(--text-dark);
             margin-right: 10px;
         }
 
@@ -504,23 +491,23 @@
         .social-links a {
             display: inline-block;
             margin: 0 10px;
-            color: var(--text-light);
+            color: var(--primary-color);
             font-size: 28px;
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .social-links a:hover {
-            color: var(--accent-glow);
+            color: var(--accent-color);
             transform: translateY(-5px);
         }
 
         /* Footer */
         footer {
-            background-color: var(--darker-bg);
-            color: var(--text-dark);
+            background-color: var(--lighter-bg);
+            color: var(--text-muted);
             text-align: center;
             padding: 30px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--border-light);
         }
 
         /* Scroll Animations */
@@ -624,11 +611,11 @@
             <nav>
                 <div class="logo">Dritare Dixhitale</div>
                 <ul class="nav-links">
-                    <li><a href="#home">Ballina</a></li>
-                    <li><a href="#services">Shërbimet</a></li>
-                    <li><a href="#why-us">Pse Ne?</a></li>
-                    <li><a href="#portfolio">Portofolio</a></li>
-                    <li><a href="#contact">Kontakti</a></li>
+                    <li><a href="index.html" class="active">Ballina</a></li>
+                    <li><a href="#services">Shërbimet</a></li> <!-- Lidhje brenda faqes -->
+                    <li><a href="#why-us">Pse Ne?</a></li> <!-- Lidhje brenda faqes -->
+                    <li><a href="#portfolio">Portofolio</a></li> <!-- Lidhje brenda faqes -->
+                    <li><a href="#contact">Kontakti</a></li> <!-- Lidhje brenda faqes -->
                 </ul>
             </nav>
         </div>
@@ -642,7 +629,7 @@
             <a href="#services" class="btn animate-on-scroll delay-2">Zbuloni Shërbimet Tona</a>
         </div>
 
-        <!-- Objekte Fluturuese -->
+        <!-- Objekte Fluturuese (vetëm në faqen kryesore) -->
         <div class="floating-object circle" style="top: 10%; left: 15%; animation-delay: 0s;"></div>
         <div class="floating-object square" style="top: 25%; right: 10%; animation-delay: 2s;"></div>
         <div class="floating-object triangle" style="bottom: 10%; left: 5%; animation-delay: 4s;"></div>
@@ -717,24 +704,45 @@
             <h2 class="animate-on-scroll">Disa nga Punët Tona</h2>
             <div class="portfolio-grid">
                 <div class="portfolio-item animate-on-scroll delay-1">
-                    <img src="https://via.placeholder.com/400x200/6a11cb/ffffff?text=Fushata+Klienti+A" alt="Fushata Dixhitale Klienti A">
+                    <img src="https://via.placeholder.com/400x200/007bff/ffffff?text=Fushata+Klienti+A" alt="Fushata Dixhitale Klienti A">
                     <div class="portfolio-item-info">
                         <h3>Klienti A - Rritje Trafiku +80%</h3>
                         <p>Një fushatë SEO dhe PPC që çoi në rritje të konsiderueshme të trafikut.</p>
                     </div>
                 </div>
                 <div class="portfolio-item animate-on-scroll delay-2">
-                    <img src="https://via.placeholder.com/400x200/2575fc/ffffff?text=Rrjetet+Sociale+Klienti+B" alt="Fushata Rrjetet Sociale Klienti B">
+                    <img src="https://via.placeholder.com/400x200/28a745/ffffff?text=Rrjetet+Sociale+Klienti+B" alt="Fushata Rrjetet Sociale Klienti B">
                     <div class="portfolio-item-info">
                         <h3>Klienti B - Angazhim në Sociale +150%</h3>
                         <p>Strategji të suksesshme të marketingut në rrjetet sociale.</p>
                     </div>
                 </div>
                 <div class="portfolio-item animate-on-scroll delay-3">
-                    <img src="https://via.placeholder.com/400x200/00f0ff/1a1a2e?text=Dizajn+Ueb+Klienti+C" alt="Dizajn Ueb Klienti C">
+                    <img src="https://via.placeholder.com/400x200/17a2b8/ffffff?text=Dizajn+Ueb+Klienti+C" alt="Dizajn Ueb Klienti C">
                     <div class="portfolio-item-info">
                         <h3>Klienti C - Faqe E-commerce Re-design</h3>
                         <p>Krijimi i një faqeje të re e-commerce me performancë të lartë.</p>
+                    </div>
+                </div>
+                 <div class="portfolio-item animate-on-scroll delay-4">
+                    <img src="https://via.placeholder.com/400x200/ffc107/343a40?text=Fushata+Email+Klienti+D" alt="Fushata Email Klienti D">
+                    <div class="portfolio-item-info">
+                        <h3>Klienti D - Optimizim Email Marketing</h3>
+                        <p>Rritje e hapjeve dhe klikimeve të fushatave me email me +40%.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item animate-on-scroll delay-5">
+                    <img src="https://via.placeholder.com/400x200/dc3545/ffffff?text=Video+Marketing+Klienti+E" alt="Video Marketing Klienti E">
+                    <div class="portfolio-item-info">
+                        <h3>Klienti E - Strategji Video Marketing</h3>
+                        <p>Krijim dhe shpërndarje videosh që rritën ndërgjegjësimin e markës.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item animate-on-scroll delay-6">
+                    <img src="https://via.placeholder.com/400x200/6f42c1/ffffff?text=Branding+Klienti+F" alt="Branding Klienti F">
+                    <div class="portfolio-item-info">
+                        <h3>Klienti F - Brand Identity Komplete</h3>
+                        <p>Zhvillimi i një identiteti të ri marke nga logoja në strategjinë e komunikimit.</p>
                     </div>
                 </div>
             </div>
@@ -791,27 +799,48 @@
         </div>
     </footer>
 
-    <!-- Font Awesome (for icons) - Kërkohet për ikonat e rrjeteve sociale, por është një CDN e jashtme. Për kërkesën "të gjitha brenda një fajli", kjo do të duhej të shmangej ose ikonat të futeshin si SVG inline. Për hir të funksionalitetit, po e lë këtë këtu. -->
+    <!-- Font Awesome (për ikona) -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
     <script>
         /*
         -------------------------------------------------------------
-        JAVASCRIPT KODI
-        Të gjitha skriptet janë kombinuar këtu.
+        JAVASCRIPT KODI (I përfshirë direkt në këtë HTML)
         -------------------------------------------------------------
         */
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Smooth Scroll for Navigation Links
-            document.querySelectorAll('nav a').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
+            // Highlight active navigation link
+            const currentPath = window.location.pathname.split('/').pop(); // Gets the filename
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+
+                // For index.html: activate "Ballina" link if on index page or its variants
+                if ((currentPath === '' || currentPath === 'index.html') && (href === 'index.html' || href === '#home')) {
+                    link.classList.add('active');
+                } else if (href === currentPath) { // For sub-pages, handled by their own JS
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active'); // Remove active from others
+                }
+            });
+
+            // Smooth Scroll for Navigation Links (ONLY on index.html for internal anchors)
+            if (currentPath === '' || currentPath === 'index.html') {
+                document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        document.querySelector(targetId).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        // Optional: Update URL hash without page reload
+                        history.pushState(null, null, targetId);
                     });
                 });
-            });
+            }
+
 
             // Scroll-triggered Animations using IntersectionObserver
             const animateElements = document.querySelectorAll('.animate-on-scroll');
@@ -835,24 +864,6 @@
             animateElements.forEach(element => {
                 observer.observe(element);
             });
-
-            // Simple Typewriter effect for Hero (Optional, can be uncommented)
-            /*
-            const heroTitle = document.querySelector('.hero-content h1');
-            const originalText = heroTitle.textContent;
-            heroTitle.textContent = ''; // Clear text to start typing
-
-            let charIndex = 0;
-            function typeWriter() {
-                if (charIndex < originalText.length) {
-                    heroTitle.textContent += originalText.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeWriter, 70); // Adjust typing speed
-                }
-            }
-            // Trigger typewriter after initial animations might play
-            setTimeout(typeWriter, 1500); // Start typing after 1.5 seconds
-            */
         });
     </script>
 </body>
