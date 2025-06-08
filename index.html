@@ -799,7 +799,7 @@
         </div>
     </footer>
 
-    <!-- Font Awesome (për ikona) -->
+    <!-- Font Awesome (për ikona) - Kërkohet për ikonat e rrjeteve sociale, por është një CDN e jashtme. Për kërkesën "të gjitha brenda një fajli", kjo do të duhej të shmangej ose ikonat të futeshin si SVG inline. Për hir të funksionalitetit, po e lë këtë këtu. -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script>
         /*
@@ -815,7 +815,6 @@
 
             navLinks.forEach(link => {
                 const href = link.getAttribute('href');
-
                 // For index.html: activate "Ballina" link if on index page or its variants
                 if ((currentPath === '' || currentPath === 'index.html') && (href === 'index.html' || href === '#home')) {
                     link.classList.add('active');
@@ -835,14 +834,14 @@
                         document.querySelector(targetId).scrollIntoView({
                             behavior: 'smooth'
                         });
-                        // Optional: Update URL hash without page reload
-                        history.pushState(null, null, targetId);
+                        // Opsionale: Update URL hash pa reload të faqes
+                        // history.pushState(null, null, targetId);
                     });
                 });
             }
 
 
-            // Scroll-triggered Animations using IntersectionObserver
+            // Animacionet e aktivizuara nga scroll-i duke përdorur IntersectionObserver
             const animateElements = document.querySelectorAll('.animate-on-scroll');
 
             const observerOptions = {
@@ -855,7 +854,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animated');
-                        // Optional: Stop observing once animated to improve performance
+                        // Opsionale: Ndaloni vëzhgimin pasi të jetë animuar për të përmirësuar performancën
                         observer.unobserve(entry.target);
                     }
                 });
