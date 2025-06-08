@@ -8,8 +8,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS KODI - DUPLIKUAR NGA INDEX.HTML */
-        /* ... (Kopjoni të gjithë CSS-in nga index.html këtu) ... */
+        /*
+        -------------------------------------------------------------
+        CSS KODI (I përfshirë direkt në këtë HTML)
+        Temë e lehtë me thekse të ndritshme.
+        -------------------------------------------------------------
+        */
 
         :root {
             --primary-color: #007bff; /* Blue */
@@ -53,7 +57,7 @@
         header {
             background-color: var(--lighter-bg);
             padding: 15px 0;
-            position: sticky; /* sticky instead of fixed for initial content */
+            position: sticky;
             top: 0;
             width: 100%;
             z-index: 1000;
@@ -116,35 +120,23 @@
             width: 100%;
         }
 
-        /* Hero Section (only on index.html) */
+        /* Hero Section (hidden on sub-pages) */
         #home {
-            background: var(--gradient-background);
-            color: #fff;
-            min-height: calc(100vh - 75px); /* Adjust for header height */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden; /* For floating objects */
-            padding-top: 80px; /* Adjust for fixed header */
-            display: none; /* Only for index.html */
+            display: none;
         }
-
-        /* Floating Objects (only on index.html) */
         .floating-object {
             display: none; /* Only for index.html */
         }
 
-        /* General Section Styling for other pages */
+        /* General Section Styling */
         section {
             padding: 100px 0;
             position: relative;
             overflow: hidden;
             background-color: var(--light-bg);
-            /* min-height removed for separate pages */
             display: flex;
             align-items: center;
+            min-height: calc(100vh - 100px); /* Adjust for header/footer on sub-pages */
         }
 
         section:nth-of-type(even) {
@@ -540,19 +532,27 @@
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script>
-        /* JAVASCRIPT KODI - DUPLIKUAR NGA INDEX.HTML */
-        /* ... (Kopjoni të gjithë JavaScript-in nga index.html këtu) ... */
+        /*
+        -------------------------------------------------------------
+        JAVASCRIPT KODI (I përfshirë direkt në këtë HTML)
+        -------------------------------------------------------------
+        */
 
         document.addEventListener('DOMContentLoaded', () => {
             // Highlight active navigation link
             const currentPath = window.location.pathname.split('/').pop(); // Gets the filename
             const navLinks = document.querySelectorAll('.nav-links a');
+
             navLinks.forEach(link => {
-                const linkPath = link.getAttribute('href');
-                if (linkPath === currentPath || (currentPath === '' && linkPath === 'index.html')) {
+                const href = link.getAttribute('href');
+                if (href === currentPath) {
                     link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
                 }
             });
+
+            // Smooth Scroll is only needed for index.html, so it's not included here.
 
             // Scroll-triggered Animations using IntersectionObserver
             const animateElements = document.querySelectorAll('.animate-on-scroll');
