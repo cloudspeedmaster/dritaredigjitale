@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DigjitalPro - Agjenci Marketingu Digjital në Kosovë</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN - Ideal for GitHub Pages & quick setups -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Custom CSS styles specific to this design */
         body {
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
+            overflow-x: hidden; /* Prevents horizontal scroll from translate animations */
         }
         
+        /* Define header height as a CSS variable for consistent offsets */
+        :root {
+            --header-height: 72px; /* Adjust this value if your header height changes */
+        }
+
+        /* Floating animation for icons */
         .floating {
             animation: floating 3s ease-in-out infinite;
         }
@@ -22,6 +31,7 @@
             100% { transform: translateY(0px); }
         }
         
+        /* Underline effect for desktop nav links */
         .nav-link::after {
             content: '';
             position: absolute;
@@ -29,14 +39,25 @@
             height: 2px;
             bottom: -2px;
             left: 0;
-            background-color: #4F46E5;
+            background-color: #4F46E5; /* Indigo-600 */
             transition: width 0.3s ease;
         }
         
         .nav-link:hover::after {
             width: 100%;
         }
+
+        /* Active state for desktop nav links */
+        .nav-link.active {
+            color: #4F46E5; /* Indigo-600 */
+            font-weight: 600; /* Semi-bold */
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
         
+        /* Service card hover effect */
         .service-card {
             transition: all 0.3s ease;
         }
@@ -44,12 +65,41 @@
         .service-card:hover {
             transform: translateY(-10px);
         }
+
+        /* Ensure fixed nav doesn't hide content */
+        body {
+            padding-top: var(--header-height);
+        }
+        
+        /* Media query specific for mobile menu */
+        @media (max-width: 767px) { /* Tailwind's 'md' breakpoint is 768px, so this targets smaller screens */
+            .fixed-mobile-menu-open {
+                overflow: hidden; /* Prevent scrolling when mobile menu is open */
+            }
+            .mobile-menu-backdrop {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); /* Darken background */
+                z-index: 30; /* Below menu, above content */
+                transition: opacity 0.3s ease;
+                opacity: 0;
+                pointer-events: none; /* Allows clicks through when hidden */
+            }
+            .mobile-menu-backdrop.active {
+                opacity: 1;
+                pointer-events: auto; /* Blocks clicks when active */
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="fixed w-full bg-white shadow-md z-50 transition-all duration-300">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+    <nav class="fixed w-full bg-white shadow-md z-50 transition-all duration-300 top-0 left-0" style="height: var(--header-height);">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center h-full">
             <a href="#home" class="flex items-center space-x-2">
                 <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 2a2 2 0 00-2 2v1H7a2 2 0 00-2 2v1H4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H10zm0 2h1v1h-1V4zM7 7h6v1H7V7zm-3 3h12v8H4v-8z"></path>
@@ -57,31 +107,40 @@
                 <span class="text-xl font-bold text-gray-800">Digjital<span class="text-indigo-600">Pro</span></span>
             </a>
             
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors">Ballina</a>
-                <a href="#services" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors">Shërbimet</a>
-                <a href="#about" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors">Rreth Nesh</a>
-                <a href="#portfolio" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors">Portfolio</a>
-                <a href="#contact" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors">Kontakti</a>
+            <div class="hidden md:flex space-x-8 h-full items-center">
+                <a href="#home" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors h-full flex items-center">Ballina</a>
+                <a href="#services" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors h-full flex items-center">Shërbimet</a>
+                <a href="#about" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors h-full flex items-center">Rreth Nesh</a>
+                <a href="#portfolio" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors h-full flex items-center">Portfolio</a>
+                <a href="#contact" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors h-full flex items-center">Kontakti</a>
             </div>
             
-            <button id="mobile-menu-button" class="md:hidden text-gray-800 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <button id="mobile-menu-button" class="md:hidden text-gray-800 focus:outline-none z-50">
+                <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </div>
         
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
-            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
-                <a href="#home" class="text-gray-800 hover:text-indigo-600 transition-colors py-2">Ballina</a>
-                <a href="#services" class="text-gray-800 hover:text-indigo-600 transition-colors py-2">Shërbimet</a>
-                <a href="#about" class="text-gray-800 hover:text-indigo-600 transition-colors py-2">Rreth Nesh</a>
-                <a href="#portfolio" class="text-gray-800 hover:text-indigo-600 transition-colors py-2">Portfolio</a>
-                <a href="#contact" class="text-gray-800 hover:text-indigo-600 transition-colors py-2">Kontakti</a>
+        <!-- Mobile Menu (Initially off-screen to the right) -->
+        <div id="mobile-menu" class="fixed top-0 right-0 w-64 h-screen bg-white shadow-lg md:hidden transform translate-x-full transition-transform duration-300 ease-in-out z-40">
+            <div class="px-4 py-3 text-right" style="height: var(--header-height); display: flex; align-items: center; justify-content: flex-end;">
+                <button id="close-menu-button" class="text-gray-800 focus:outline-none">
+                    <svg id="close-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-3 p-4">
+                <a href="#home" class="mobile-nav-link text-gray-800 hover:text-indigo-600 transition-colors py-2 block text-lg font-medium">Ballina</a>
+                <a href="#services" class="mobile-nav-link text-gray-800 hover:text-indigo-600 transition-colors py-2 block text-lg font-medium">Shërbimet</a>
+                <a href="#about" class="mobile-nav-link text-gray-800 hover:text-indigo-600 transition-colors py-2 block text-lg font-medium">Rreth Nesh</a>
+                <a href="#portfolio" class="mobile-nav-link text-gray-800 hover:text-indigo-600 transition-colors py-2 block text-lg font-medium">Portfolio</a>
+                <a href="#contact" class="mobile-nav-link text-gray-800 hover:text-indigo-600 transition-colors py-2 block text-lg font-medium">Kontakti</a>
             </div>
         </div>
+        <!-- Backdrop for mobile menu -->
+        <div id="mobile-menu-backdrop" class="mobile-menu-backdrop hidden"></div>
     </nav>
 
     <!-- Hero Section -->
@@ -128,7 +187,7 @@
                     </svg>
                 </div>
                 
-                <!-- Floating Icons -->
+                <!-- Floating Icons (Social Media Mockup) -->
                 <div class="absolute top-10 right-10 bg-white p-3 rounded-full shadow-lg floating">
                     <svg class="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
@@ -172,7 +231,7 @@
                         Krijojmë dhe menaxhojmë përmbajtje tërheqëse për platformat tuaja të mediave sociale për të rritur angazhimin dhe ndërgjegjësimin e markës.
                     </p>
                     <a href="#contact" class="text-indigo-600 font-medium flex items-center hover:underline">
-                        Mëso më shumë
+                        
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
@@ -191,7 +250,7 @@
                         Krijojmë uebfaqe të përgjegjshme, të optimizuara për motorët e kërkimit dhe të përshtatura për nevojat e biznesit tuaj.
                     </p>
                     <a href="#contact" class="text-indigo-600 font-medium flex items-center hover:underline">
-                        Mëso më shumë
+                        
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
@@ -210,7 +269,7 @@
                         Krijojmë përmbajtje cilësore që tërheq audiencën tuaj dhe përmirëson renditjen tuaj në motorët e kërkimit.
                     </p>
                     <a href="#contact" class="text-indigo-600 font-medium flex items-center hover:underline">
-                        Mëso më shumë
+                        
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
@@ -229,7 +288,7 @@
                         Përmirësojmë dukshmërinë tuaj online dhe rrisim trafikun organik në uebfaqen tuaj përmes strategjive të avancuara SEO.
                     </p>
                     <a href="#contact" class="text-indigo-600 font-medium flex items-center hover:underline">
-                        Mëso më shumë
+                        
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
@@ -249,26 +308,7 @@
                         Krijojmë fushata efektive të marketingut me email për të rritur konvertimet dhe për të mbajtur klientët të angazhuar.
                     </p>
                     <a href="#contact" class="text-indigo-600 font-medium flex items-center hover:underline">
-                        Mëso më shumë
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </div>
-                
-                <!-- Service 6 -->
-                <div class="service-card bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-                    <div class="bg-red-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Marketingu me Video</h3>
-                    <p class="text-gray-600 mb-4">
-                        Krijojmë përmbajtje video tërheqëse që tregon historinë e markës tuaj dhe angazhon audiencën tuaj.
-                    </p>
-                    <a href="#contact" class="text-indigo-600 font-medium flex items-center hover:underline">
-                        Mëso më shumë
+                        
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
@@ -322,7 +362,7 @@
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Rreth DigjitalPro</h2>
                     <div class="w-20 h-1 bg-indigo-600 mb-6"></div>
                     <p class="text-gray-600 mb-6">
-                        DigjitalPro është një agjenci e marketingut digjital me seli në Prishtinë, Kosovë. Ne jemi të përkushtuar për të ndihmuar bizneset e vogla dhe të mesme të rriten në botën digjitale përmes strategjive inovative të marketingut dhe zgjidhjeve të personalizuara.
+                        DigjitalPro është një agjenci e marketingut digjital me seli në New York, USA. Ne jemi të përkushtuar për të ndihmuar bizneset e vogla dhe të mesme të rriten në botën digjitale përmes strategjive inovative të marketingut dhe zgjidhjeve të personalizuara.
                     </p>
                     <p class="text-gray-600 mb-8">
                         Me një ekip të pasionuar dhe me përvojë në fushën e marketingut digjital, ne ofrojmë një gamë të gjerë shërbimesh për të ndihmuar klientët tanë të arrijnë objektivat e tyre të biznesit. Ne besojmë në ndërtimin e marrëdhënieve afatgjata me klientët tanë dhe në ofrimin e rezultateve të matshme.
@@ -523,7 +563,7 @@
                     
                     <div class="bg-white rounded-xl shadow-lg p-6">
                         <p class="text-gray-600 italic mb-4">
-                            "Falë DigjitalPro, shkolla jonë ka parë një rritje të jashtëzakonshme në regjistrimet e studentëve. Strategjia e tyre e marketingut me përmbajtje dhe optimizimi për motorët e kërkimit kanë qenë thelbësore për suksesin tonë."
+                            "Falë DigjitalPro dhe strategjive të tyre të marketingut digjital, Ordinanca Shëndeti ka përjetuar një rritje të konsiderueshme në praninë e saj online dhe angazhimin e klientëve. Ndërtimi i faqes së internetit dhe menaxhimi i mediave sociale kanë qenë thelbësore për rritjen e dukshmërisë së ordinancës, duke e bërë më të lehtë për pacientët të gjejnë dhe të lidhen me shërbimet e saj. Strategjitë e tij të përmbajtjes dhe optimizimi për motorët e kërkimit kanë qenë kyçe për këtë sukses."
                         </p>
                         <div class="flex items-center">
                             <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-4">
@@ -532,8 +572,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-800">Driton Hoxha</h4>
-                                <p class="text-gray-500 text-sm">Drejtor, Shkolla e Gjuhëve "Fluent"</p>
+                                <h4 class="font-semibold text-gray-800">Shkurte Berisha</h4>
+                                <p class="text-gray-500 text-sm">Ordinanca Shëndeti"</p>
                             </div>
                         </div>
                     </div>
@@ -572,7 +612,7 @@
                             </div>
                             <div>
                                 <label for="subject" class="block text-gray-700 font-medium mb-2">Subjekti</label>
-                                <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent" placeholder="Subjekti i mesazhit" required>
+                                <input type="text" id="subject" name="_subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent" placeholder="Subjekti i mesazhit" required>
                             </div>
                             <div>
                                 <label for="message" class="block text-gray-700 font-medium mb-2">Mesazhi</label>
@@ -614,7 +654,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-medium mb-1">Adresa</h4>
-                                    <p class="opacity-90">Rruga "Agim Ramadani", Nr. 23<br>Prishtinë, 10000, Kosovë</p>
+                                    <p class="opacity-90">New York, 10011, USA</p>
                                 </div>
                             </div>
                             
@@ -626,8 +666,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-medium mb-1">Telefoni</h4>
-                                    <p class="opacity-90">+383 44 123 456</p>
-                                    <p class="opacity-90">+383 49 789 012</p>
+                                    <p class="opacity-90">+1 914 338 8496</p>
                                 </div>
                             </div>
                             
@@ -640,8 +679,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-medium mb-1">Email</h4>
-                                    <p class="opacity-90">info@digjitalpro.com</p>
-                                    <p class="opacity-90">kontakt@digjitalpro.com</p>
+                                    <p class="opacity-90">cloudspeedmaster@gmail.com</p>
                                 </div>
                             </div>
                             
@@ -653,28 +691,193 @@
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-medium mb-1">Orari i Punës</h4>
-                                    <p class="opacity-90">E Hënë - E Premte: 9:00 - 17:00</p>
-                                    <p class="opacity-90">E Shtunë: 10:00 - 14:00</p>
+                                    <p class="opacity-90">E Hënë - E Premte: 10:00 - 21:00</p>
+                                    <p class="opacity-90">E Shtunë - E Diel: 10:00 - 18:00</p>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="mt-8 flex space-x-4">
-                            <a href="#" class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                            <a href="https://www.facebook.com/digjitalpro" class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
                                 <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
                                 </svg>
                             </a>
-                            <a href="#" class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                            <a href="https://www.instagram.com/digjitalpro" class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
                                 <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                                 </svg>
                             </a>
-                            <a href="#" class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
-                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                                </svg>
-                            </a>
-                            <a href="#" class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
-                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94d5b663442f43fb',t:'MTc0OTUyNTQxMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-10 px-4">
+        <div class="container mx-auto text-center">
+            <p>© 2025 DigjitalPro. Të gjitha të drejtat e rezervuara.</p>
+            <div class="mt-4 text-sm text-gray-400">
+                <a href="#privacy" class="hover:underline mx-2">Politika e Privatësisë</a> | 
+                <a href="#terms" class="hover:underline mx-2">Termat e Shërbimit</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Starts Here -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const mobileNavLinks = document.querySelectorAll('#mobile-menu .mobile-nav-link');
+            const desktopNavLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+            const header = document.querySelector('nav');
+            const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+            const body = document.body;
+
+            // Function to toggle mobile menu
+            const toggleMobileMenu = () => {
+                mobileMenu.classList.toggle('translate-x-full'); // Toggles slide in/out
+                mobileMenuBackdrop.classList.toggle('hidden'); // Show/hide backdrop
+                mobileMenuBackdrop.classList.toggle('active'); // Activate backdrop opacity transition
+                body.classList.toggle('fixed-mobile-menu-open'); // Prevent body scroll
+
+                // Change hamburger icon to close icon and vice versa
+                if (mobileMenu.classList.contains('translate-x-full')) {
+                    // Menu is closing, show hamburger
+                    hamburgerIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>`;
+                } else {
+                    // Menu is opening, show close icon
+                    hamburgerIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>`;
+                }
+            };
+
+            // Event listener for hamburger button
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+            // Event listener for close button inside mobile menu
+            closeMenuButton.addEventListener('click', toggleMobileMenu);
+
+            // Close mobile menu when backdrop is clicked
+            mobileMenuBackdrop.addEventListener('click', toggleMobileMenu);
+
+            // Smooth scrolling for all nav links
+            const smoothScroll = (e) => {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const headerOffset = header.offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 10; // Extra padding
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('translate-x-full')) {
+                        toggleMobileMenu();
+                    }
+                }
+            };
+
+            // Apply smooth scroll to all nav links
+            desktopNavLinks.forEach(link => link.addEventListener('click', smoothScroll));
+            mobileNavLinks.forEach(link => link.addEventListener('click', smoothScroll));
+
+            // Active navigation link on scroll
+            const updateActiveNavLink = () => {
+                let currentSectionId = '';
+                const headerHeight = header.offsetHeight; // Get dynamic header height
+
+                sections.forEach(section => {
+                    // Get position relative to the viewport, then add scrollY to get true document position
+                    const sectionTop = section.getBoundingClientRect().top + window.scrollY - headerHeight - 20; // Offset for header + some padding
+                    const sectionBottom = sectionTop + section.offsetHeight;
+
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                        currentSectionId = section.id;
+                    }
+                });
+
+                // Update desktop nav links
+                desktopNavLinks.forEach(link => {
+                    link.classList.remove('active'); // Remove custom 'active' class
+                    // Remove Tailwind classes if they were used for active state
+                    link.classList.remove('text-indigo-600', 'font-semibold'); 
+                    link.classList.add('text-gray-800'); // Ensure default color
+
+                    if (link.getAttribute('href').substring(1) === currentSectionId) {
+                        link.classList.add('active'); // Add custom 'active' class for underline
+                        link.classList.add('text-indigo-600', 'font-semibold');
+                    }
+                });
+
+                // Update mobile nav links
+                mobileNavLinks.forEach(link => {
+                    link.classList.remove('font-bold', 'text-indigo-600');
+                    link.classList.add('text-gray-800'); // Ensure default color
+
+                    if (link.getAttribute('href').substring(1) === currentSectionId) {
+                        link.classList.add('font-bold', 'text-indigo-600');
+                    }
+                });
+            };
+
+            // Initial call and on scroll
+            updateActiveNavLink();
+            window.addEventListener('scroll', updateActiveNavLink);
+
+
+            // Formspree Integration with success/error messages
+            const contactForm = document.getElementById('contact-form');
+            const submitButton = document.getElementById('submit-button');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault(); // Prevent default form submission
+
+                    submitButton.disabled = true; // Disable button to prevent multiple submissions
+                    submitButton.textContent = 'Duke Dërguar...'; // Change button text
+
+                    successMessage.classList.add('hidden'); // Hide any previous messages
+                    errorMessage.classList.add('hidden');
+
+                    try {
+                        const response = await fetch(contactForm.action, {
+                            method: contactForm.method,
+                            body: new FormData(contactForm),
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        if (response.ok) {
+                            successMessage.classList.remove('hidden');
+                            contactForm.reset(); // Clear the form
+                        } else {
+                            errorMessage.classList.remove('hidden');
+                        }
+                    } catch (error) {
+                        errorMessage.classList.remove('hidden');
+                        console.error('Gabim në dërgim të formularit:', error);
+                    } finally {
+                        submitButton.disabled = false; // Re-enable button
+                        submitButton.textContent = 'Dërgo Mesazhin'; // Reset button text
+                    }
+                });
+            }
+        });
+    </script>
+    <!-- JavaScript Ends Here -->
+</body>
+</html>
