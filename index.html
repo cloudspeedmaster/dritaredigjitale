@@ -3,887 +3,678 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DigjitalPro - Agjencia Juaj e Marketingut Digjital në Kosovë</title>
-    <!-- Google Fonts: Montserrat (for headings) and Poppins (for body) -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <title>DigjitalPro - Agjenci Marketingu Digjital në Kosovë</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* CSS Starts Here */
-
-        :root {
-            --primary-color: #007bff; /* Bright Blue */
-            --secondary-color: #6c757d; /* Muted Grey */
-            --accent-color: #28a745; /* Green Accent */
-            --dark-color: #343a40; /* Dark Grey/Black */
-            --light-color: #f8f9fa; /* Off White */
-            --white-color: #ffffff;
-            --gradient-start: #0056b3;
-            --gradient-end: #007bff;
-            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            --border-radius: 8px;
-        }
-
-        /* Base Styles & Resets */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--dark-color);
-            background-color: var(--light-color);
-            overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+            scroll-behavior: smooth;
         }
-
-        a {
-            text-decoration: none;
-            color: var(--primary-color);
-            transition: color 0.3s ease;
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
         }
-
-        a:hover {
-            color: var(--accent-color);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--dark-color);
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--primary-color);
-            border-radius: 2px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-            color: var(--white-color);
-            padding: 12px 25px;
-            border-radius: var(--border-radius);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: var(--box-shadow);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            opacity: 0.9;
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            box-shadow: none;
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary-color);
-            color: var(--white-color);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-        }
-        .fade-in.visible {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
+        
         @keyframes floating {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
-
-        /* Header & Navigation */
-        header {
-            background-color: var(--white-color);
-            padding: 1rem 0;
-            box-shadow: var(--box-shadow);
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        nav ul {
-            display: flex;
-        }
-
-        nav ul li {
-            margin-left: 30px;
-        }
-
-        nav ul li a {
-            color: var(--dark-color);
-            font-weight: 500;
-            padding: 5px 0;
-            position: relative;
-        }
-
-        nav ul li a::after {
+        
+        .nav-link::after {
             content: '';
             position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0%;
+            width: 0;
             height: 2px;
-            background-color: var(--primary-color);
+            bottom: -2px;
+            left: 0;
+            background-color: #4F46E5;
             transition: width 0.3s ease;
         }
-
-        nav ul li a:hover::after,
-        nav ul li a.active::after {
+        
+        .nav-link:hover::after {
             width: 100%;
         }
         
-        nav ul li a.active {
-            color: var(--primary-color);
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.8rem;
-            color: var(--dark-color);
-        }
-
-        /* Hero Section (Ballina) */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/random/1920x1080/?digital-marketing-agency,kosovo') no-repeat center center/cover;
-            color: var(--white-color);
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 50px 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top left, rgba(0, 123, 255, 0.3) 0%, transparent 50%),
-                        radial-gradient(circle at bottom right, rgba(40, 167, 69, 0.3) 0%, transparent 50%);
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            opacity: 0;
-            animation: fadeInUp 1.2s ease-out 0.3s forwards;
-        }
-
-        .hero-content h1 {
-            font-size: 3.8rem;
-            margin-bottom: 1rem;
-            color: var(--white-color);
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        /* General Section Styling */
-        .section {
-            padding: 80px 0;
-            background-color: var(--white-color);
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        .section:nth-child(even) {
-            background-color: var(--light-color);
-        }
-
-        /* About Section */
-        .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 40px;
-            text-align: left;
-        }
-
-        .about-text, .about-image {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .about-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-        
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-        }
-
-        .about-text p {
-            margin-bottom: 1rem;
-        }
-
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
         .service-card {
-            background-color: var(--white-color);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
         }
-
+        
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
-
-        .service-card i {
-            font-size: 3.5rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--dark-color);
-        }
-
-        /* Portfolio Section */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .portfolio-item {
-            background-color: var(--white-color);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--box-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .portfolio-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .portfolio-content {
-            padding: 20px;
-        }
-
-        .portfolio-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        .portfolio-content p {
-            font-size: 0.95rem;
-            color: var(--secondary-color);
-        }
-
-        /* Contact Section */
-        .contact-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            justify-content: space-between;
-        }
-
-        .contact-form, .contact-info {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .contact-form {
-            background-color: var(--white-color);
-            padding: 40px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--dark-color);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ced4da;
-            border-radius: var(--border-radius);
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .contact-info {
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            padding: 40px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .contact-info h3 {
-            color: var(--white-color);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .info-item i {
-            font-size: 1.5rem;
-            margin-right: 15px;
-            color: var(--accent-color);
-        }
-
-        .info-item p {
-            font-size: 1.1rem;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark-color);
-            color: var(--white-color);
-            text-align: center;
-            padding: 2.5rem 20px;
-            font-size: 0.9rem;
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-        /* Floating Social Icons */
-        .floating-icons {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 1001;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .floating-icons .icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            color: var(--white-color);
-            font-size: 1.8rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            animation: floating 3s ease-in-out infinite; /* Floating animation */
-        }
-
-        .floating-icons .icon:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .floating-icons .facebook { background-color: #3b5998; }
-        .floating-icons .instagram { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
-        .floating-icons .whatsapp { background-color: #25d366; }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero-content h1 {
-                font-size: 3rem;
-            }
-            .hero-content p {
-                font-size: 1.1rem;
-            }
-
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 76px; /* Height of header */
-                left: 0;
-                width: 100%;
-                background-color: var(--white-color);
-                box-shadow: var(--box-shadow);
-                padding: 20px 0;
-                text-align: center;
-            }
-
-            nav ul.active {
-                display: flex;
-            }
-
-            nav ul li {
-                margin: 10px 0;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .about-content, .contact-content {
-                flex-direction: column;
-            }
-
-            .about-text, .about-image, .contact-form, .contact-info {
-                width: 100%;
-                min-width: unset;
-            }
-
-            .contact-info {
-                margin-top: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            h2 {
-                font-size: 2rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .section {
-                padding: 60px 0;
-            }
-
-            .services-grid, .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo {
-                font-size: 1.8rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-
-            .service-card, .portfolio-item, .contact-form, .contact-info {
-                padding: 20px;
-            }
-        }
-        /* CSS Ends Here */
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">DigjitalPro</div>
-            <ul id="nav-links">
-                <li><a href="#home" class="nav-link active">Ballina</a></li>
-                <li><a href="#about" class="nav-link">Rreth Nesh</a></li>
-                <li><a href="#services" class="nav-link">Shërbimet</a></li>
-                <li><a href="#portfolio" class="nav-link">Puna Jonë</a></li>
-                <li><a href="#contact" class="nav-link">Kontakti</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger-menu">
-                <i class="fas fa-bars"></i>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#home" class="flex items-center space-x-2">
+                <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 2a2 2 0 00-2 2v1H7a2 2 0 00-2 2v1H4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H10zm0 2h1v1h-1V4zM7 7h6v1H7V7zm-3 3h12v8H4v-8z"></path>
+                </svg>
+                <span class="text-xl font-bold text-gray-800">Digjital<span class="text-indigo-600">Pro</span></span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors">Ballina</a>
+                <a href="#services" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors">Shërbimet</a>
+                <a href="#about" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors">Rreth Nesh</a>
+                <a href="#portfolio" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors">Portfolio</a>
+                <a href="#contact" class="nav-link relative text-gray-800 hover:text-indigo-600 transition-colors">Kontakti</a>
             </div>
-        </nav>
-    </header>
-
-    <main>
-        <!-- Home Section -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Rritni Biznesin Tuaj Online me DigjitalPro!</h1>
-                <p>Partneri Juaj i Besueshëm për Marketing Digjital në Kosovë. Ne krijojmë uebfaqe, menaxhojmë rrjetet sociale dhe rrisim praninë tuaj digjitale.</p>
-                <a href="#services" class="btn">Zbuloni Shërbimet Tona</a>
-                <a href="#contact" class="btn btn-outline" style="margin-left: 15px;">Na Kontaktoni</a>
+            
+            <button id="mobile-menu-button" class="md:hidden text-gray-800 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#home" class="text-gray-800 hover:text-indigo-600 transition-colors py-2">Ballina</a>
+                <a href="#services" class="text-gray-800 hover:text-indigo-600 transition-colors py-2">Shërbimet</a>
+                <a href="#about" class="text-gray-800 hover:text-indigo-600 transition-colors py-2">Rreth Nesh</a>
+                <a href="#portfolio" class="text-gray-800 hover:text-indigo-600 transition-colors py-2">Portfolio</a>
+                <a href="#contact" class="text-gray-800 hover:text-indigo-600 transition-colors py-2">Kontakti</a>
             </div>
-        </section>
+        </div>
+    </nav>
 
-        <!-- About Section -->
-        <section id="about" class="section">
-            <div class="container">
-                <h2 class="fade-in">Rreth Nesh</h2>
-                <div class="about-content fade-in">
-                    <div class="about-text">
-                        <h3>Kush Jemi Ne?</h3>
-                        <p>DigjitalPro është një agjenci e marketingut digjital e dedikuar për të ndihmuar bizneset e vogla dhe të mesme në Kosovë të lulëzojnë në peizazhin digjital. Ne besojmë se çdo biznes meriton një prani të fortë online dhe jemi këtu për t'ju udhëhequr në këtë rrugëtim.</p>
-                        <p>Me një ekip profesionistësh të apasionuar pas inovacionit dhe rezultateve, ne punojmë ngushtë me klientët tanë për të kuptuar nevojat e tyre unike dhe për të zhvilluar strategji të personalizuara që japin impakt real.</p>
-                        <p>Misioni ynë është të thjeshtojmë marketingun digjital për ju, duke ju lejuar të përqëndroheni në atë që bëni më mirë: drejtimin e biznesit tuaj.</p>
+    <!-- Hero Section -->
+    <section id="home" class="pt-28 pb-20 bg-gradient-to-br from-indigo-50 to-white">
+        <div class="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center">
+            <div class="md:w-1/2 mt-10 md:mt-0">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800">
+                    Transformojmë <span class="text-indigo-600">Bizneset Tuaja</span> në Botën Digjitale
+                </h1>
+                <p class="mt-6 text-gray-600 text-lg">
+                    DigjitalPro është agjencia juaj e marketingut digjital në Kosovë që ndihmon bizneset e vogla të rriten përmes strategjive inovative të marketingut online.
+                </p>
+                <div class="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#contact" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-6 rounded-lg transition-colors text-center">
+                        Na Kontaktoni
+                    </a>
+                    <a href="#services" class="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white font-medium py-3 px-6 rounded-lg transition-colors text-center">
+                        Shërbimet Tona
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative">
+                <div class="relative z-10">
+                    <svg class="w-full h-auto" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#10B981;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M50,250 Q150,50 250,200 T450,150" stroke="url(#grad1)" stroke-width="5" fill="none" />
+                        <circle cx="120" cy="120" r="40" fill="#4F46E5" opacity="0.2" class="floating" />
+                        <circle cx="400" cy="200" r="30" fill="#10B981" opacity="0.2" />
+                        <circle cx="280" cy="250" r="50" fill="#4F46E5" opacity="0.2" />
+                        <rect x="150" y="100" width="200" height="150" rx="10" fill="white" stroke="#e5e7eb" stroke-width="2" />
+                        <rect x="170" y="120" width="160" height="15" rx="3" fill="#e5e7eb" />
+                        <rect x="170" y="145" width="120" height="10" rx="3" fill="#e5e7eb" />
+                        <rect x="170" y="165" width="140" height="10" rx="3" fill="#e5e7eb" />
+                        <rect x="170" y="185" width="100" height="10" rx="3" fill="#e5e7eb" />
+                        <rect x="170" y="215" width="70" height="20" rx="5" fill="#4F46E5" />
+                        <circle cx="380" cy="100" r="30" fill="#10B981" opacity="0.7" />
+                        <circle cx="70" cy="250" r="20" fill="#4F46E5" opacity="0.7" />
+                        <path d="M320,300 Q350,280 380,300 T440,280" stroke="#10B981" stroke-width="3" fill="none" />
+                    </svg>
+                </div>
+                
+                <!-- Floating Icons -->
+                <div class="absolute top-10 right-10 bg-white p-3 rounded-full shadow-lg floating">
+                    <svg class="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                    </svg>
+                </div>
+                <div class="absolute top-32 right-32 bg-white p-3 rounded-full shadow-lg">
+                    <svg class="w-6 h-6 text-pink-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </div>
+                <div class="absolute bottom-20 left-10 bg-white p-3 rounded-full shadow-lg floating">
+                    <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Shërbimet Tona</h2>
+                <div class="w-24 h-1 bg-indigo-600 mx-auto mt-4 mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Ofrojmë një gamë të gjerë shërbimesh për të ndihmuar biznesin tuaj të rritet në botën digjitale.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                    <div class="bg-indigo-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v1h8v-1zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-1a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v1h-3zM4.75 12.094A5.973 5.973 0 004 15v1H1v-1a3 3 0 013.75-2.906z"></path>
+                        </svg>
                     </div>
-                    <div class="about-image">
-                        <img src="https://source.unsplash.com/random/600x400/?teamwork,office" alt="DigjitalPro Ekipi">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Menaxhimi i Mediave Sociale</h3>
+                    <p class="text-gray-600 mb-4">
+                        Krijojmë dhe menaxhojmë përmbajtje tërheqëse për platformat tuaja të mediave sociale për të rritur angazhimin dhe ndërgjegjësimin e markës.
+                    </p>
+                    <a href="#contact" class="text-indigo-600 font-medium flex items-center hover:underline">
+                        Mëso më shumë
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                    <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Dizajn dhe Zhvillim i Uebfaqeve</h3>
+                    <p class="text-gray-600 mb-4">
+                        Krijojmë uebfaqe të përgjegjshme, të optimizuara për motorët e kërkimit dhe të përshtatura për nevojat e biznesit tuaj.
+                    </p>
+                    <a href="#contact" class="text-indigo-600 font-medium flex items-center hover:underline">
+                        Mëso më shumë
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                    <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM14 11a1 1 0 011 1v1h1a1 1 0 110 2h-1v1a1 1 0 11-2 0v-1h-1a1 1 0 110-2h1v-1a1 1 0 011-1z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Marketingu i Përmbajtjes</h3>
+                    <p class="text-gray-600 mb-4">
+                        Krijojmë përmbajtje cilësore që tërheq audiencën tuaj dhe përmirëson renditjen tuaj në motorët e kërkimit.
+                    </p>
+                    <a href="#contact" class="text-indigo-600 font-medium flex items-center hover:underline">
+                        Mëso më shumë
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                    <div class="bg-yellow-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Optimizimi për Motorët e Kërkimit (SEO)</h3>
+                    <p class="text-gray-600 mb-4">
+                        Përmirësojmë dukshmërinë tuaj online dhe rrisim trafikun organik në uebfaqen tuaj përmes strategjive të avancuara SEO.
+                    </p>
+                    <a href="#contact" class="text-indigo-600 font-medium flex items-center hover:underline">
+                        Mëso më shumë
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                    <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Marketingu me Email</h3>
+                    <p class="text-gray-600 mb-4">
+                        Krijojmë fushata efektive të marketingut me email për të rritur konvertimet dhe për të mbajtur klientët të angazhuar.
+                    </p>
+                    <a href="#contact" class="text-indigo-600 font-medium flex items-center hover:underline">
+                        Mëso më shumë
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                    <div class="bg-red-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Marketingu me Video</h3>
+                    <p class="text-gray-600 mb-4">
+                        Krijojmë përmbajtje video tërheqëse që tregon historinë e markës tuaj dhe angazhon audiencën tuaj.
+                    </p>
+                    <a href="#contact" class="text-indigo-600 font-medium flex items-center hover:underline">
+                        Mëso më shumë
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gradient-to-br from-indigo-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="relative">
+                        <div class="bg-white p-6 rounded-xl shadow-lg z-10 relative">
+                            <div class="flex items-center mb-6">
+                                <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800">Misioni Ynë</h3>
+                            </div>
+                            <p class="text-gray-600">
+                                Misioni ynë është të ndihmojmë bizneset e vogla në Kosovë të rriten dhe të kenë sukses në botën digjitale përmes strategjive inovative të marketingut dhe zgjidhjeve të personalizuara.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-lg mt-6 ml-8 z-20 relative">
+                            <div class="flex items-center mb-6">
+                                <div class="bg-green-600 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                                        <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800">Vizioni Ynë</h3>
+                            </div>
+                            <p class="text-gray-600">
+                                Vizioni ynë është të bëhemi agjencia kryesore e marketingut digjital në Kosovë, e njohur për ekspertizën, kreativitetin dhe rezultatet e dukshme që ofrojmë për klientët tanë.
+                            </p>
+                        </div>
+                        
+                        <div class="absolute top-10 -left-4 w-20 h-20 bg-indigo-600 rounded-full opacity-10"></div>
+                        <div class="absolute bottom-10 right-4 w-16 h-16 bg-green-600 rounded-full opacity-10"></div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Rreth DigjitalPro</h2>
+                    <div class="w-20 h-1 bg-indigo-600 mb-6"></div>
+                    <p class="text-gray-600 mb-6">
+                        DigjitalPro është një agjenci e marketingut digjital me seli në Prishtinë, Kosovë. Ne jemi të përkushtuar për të ndihmuar bizneset e vogla dhe të mesme të rriten në botën digjitale përmes strategjive inovative të marketingut dhe zgjidhjeve të personalizuara.
+                    </p>
+                    <p class="text-gray-600 mb-8">
+                        Me një ekip të pasionuar dhe me përvojë në fushën e marketingut digjital, ne ofrojmë një gamë të gjerë shërbimesh për të ndihmuar klientët tanë të arrijnë objektivat e tyre të biznesit. Ne besojmë në ndërtimin e marrëdhënieve afatgjata me klientët tanë dhe në ofrimin e rezultateve të matshme.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex items-center">
+                            <div class="bg-indigo-100 rounded-full p-2 mr-3">
+                                <svg class="w-5 h-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700 font-medium">Profesionalizëm</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-indigo-100 rounded-full p-2 mr-3">
+                                <svg class="w-5 h-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700 font-medium">Kreativitet</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-indigo-100 rounded-full p-2 mr-3">
+                                <svg class="w-5 h-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700 font-medium">Inovacion</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-indigo-100 rounded-full p-2 mr-3">
+                                <svg class="w-5 h-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700 font-medium">Rezultate</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Services Section -->
-        <section id="services" class="section">
-            <div class="container">
-                <h2 class="fade-in">Shërbimet Tona</h2>
-                <div class="services-grid">
-                    <div class="service-card fade-in">
-                        <i class="fas fa-globe"></i>
-                        <h3>Krijimi i Uebfaqeve</h3>
-                        <p>Ndërtojmë uebfaqe moderne, të përgjegjshme dhe funksionale, të optimizuara për performancë dhe lehtësi përdorimi.</p>
-                    </div>
-                    <div class="service-card fade-in">
-                        <i class="fab fa-instagram"></i>
-                        <h3>Menaxhimi i Mediave Sociale</h3>
-                        <p>Krijojmë dhe ekzekutojmë strategji tërheqëse për rrjetet sociale, duke rritur angazhimin dhe ndjekësit tuaj.</p>
-                    </div>
-                    <div class="service-card fade-in">
-                        <i class="fas fa-search"></i>
-                        <h3>Optimizimi SEO</h3>
-                        <p>Përmirësojmë dukshmërinë e uebfaqes tuaj në motorët e kërkimit (Google, Bing) për të tërhequr më shumë klientë potencialë.</p>
-                    </div>
-                    <div class="service-card fade-in">
-                        <i class="fas fa-bullhorn"></i>
-                        <h3>Reklamimi Online (PPC)</h3>
-                        <p>Krijojmë dhe menaxhojmë fushata reklamimi të paguara në Google Ads, Facebook Ads dhe platforma të tjera.</p>
-                    </div>
-                    <div class="service-card fade-in">
-                        <i class="fas fa-pencil-alt"></i>
-                        <h3>Marketingu i Përmbajtjes</h3>
-                        <p>Zhvillojmë përmbajtje cilësore (blogje, artikuj, video) që informon, argëton dhe tërheq audiencën tuaj.</p>
-                    </div>
-                    <div class="service-card fade-in">
-                        <i class="fas fa-comments"></i>
-                        <h3>Konsulencë Digjitale</h3>
-                        <p>Ofroni këshilla strategjike për të gjitha aspektet e marketingut tuaj digjital, nga planifikimi te zbatimi.</p>
-                    </div>
-                </div>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Portfolio Jonë</h2>
+                <div class="w-24 h-1 bg-indigo-600 mx-auto mt-4 mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Shikoni disa nga projektet tona të fundit dhe rezultatet që kemi arritur për klientët tanë.
+                </p>
             </div>
-        </section>
-
-        <!-- Portfolio Section -->
-        <section id="portfolio" class="section">
-            <div class="container">
-                <h2 class="fade-in">Puna Jonë</h2>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item fade-in">
-                        <img src="https://source.unsplash.com/random/400x250/?website-design,ecommerce" alt="E-commerce Website">
-                        <div class="portfolio-content">
-                            <h3>Uebfaqe E-commerce për "Dyqani Im"</h3>
-                            <p>Një platformë e-commerce e dizajnuar për shitjen e produkteve artizanale, me fokus në estetikë dhe lehtësi blerjeje.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Portfolio Item 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative h-60 bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div class="absolute top-2 right-2 bg-white rounded-full p-2">
+                            <svg class="w-5 h-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                            </svg>
                         </div>
                     </div>
-                    <div class="portfolio-item fade-in">
-                        <img src="https://source.unsplash.com/random/400x250/?social-media-marketing,restaurant" alt="Social Media Campaign">
-                        <div class="portfolio-content">
-                            <h3>Fushata Sociale për "Restorant Tradita"</h3>
-                            <p>Rritje prej 200% në angazhimin në Instagram dhe Facebook përmes përmbajtjes krijuese dhe reklamave të targetuara.</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-item fade-in">
-                        <img src="https://source.unsplash.com/random/400x250/?blogging,content-marketing" alt="Blog for Tech Startup">
-                        <div class="portfolio-content">
-                            <h3>Blog "Startup Tech Kosovo"</h3>
-                            <p>Krijimi dhe menaxhimi i blogut që pozicionon startup-in si lider mendimi në industrinë teknologjike.</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-item fade-in">
-                        <img src="https://source.unsplash.com/random/400x250/?local-business,seo" alt="Local SEO Strategy">
-                        <div class="portfolio-content">
-                            <h3>SEO Lokal për "Klinika Dentare Nova"</h3>
-                            <p>Optimizim për kërkime lokale, duke rritur numrin e rezervimeve online me 30%.</p>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Kafeneja "Aroma"</h3>
+                        <p class="text-gray-600 mb-4">
+                            Krijuam një uebfaqe të re dhe menaxhuam mediat sociale për këtë kafene të njohur në Prishtinë, duke rritur trafikun në dyqan me 40%.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-indigo-100 text-indigo-600 text-xs font-medium px-3 py-1 rounded-full">Uebfaqe</span>
+                            <span class="bg-indigo-100 text-indigo-600 text-xs font-medium px-3 py-1 rounded-full">Media Sociale</span>
+                            <span class="bg-indigo-100 text-indigo-600 text-xs font-medium px-3 py-1 rounded-full">SEO</span>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Portfolio Item 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative h-60 bg-gradient-to-r from-green-500 to-teal-600 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                            <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path>
+                        </svg>
+                        <div class="absolute top-2 right-2 bg-white rounded-full p-2">
+                            <svg class="w-5 h-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Butiku "Eleganca"</h3>
+                        <p class="text-gray-600 mb-4">
+                            Zhvilluam një strategji të marketingut digjital që përfshinte një dyqan online dhe fushata në mediat sociale, duke rritur shitjet me 65%.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-indigo-100 text-indigo-600 text-xs font-medium px-3 py-1 rounded-full">E-commerce</span>
+                            <span class="bg-indigo-100 text-indigo-600 text-xs font-medium px-3 py-1 rounded-full">Media Sociale</span>
+                            <span class="bg-indigo-100 text-indigo-600 text-xs font-medium px-3 py-1 rounded-full">Email Marketing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="relative h-60 bg-gradient-to-r from-blue-500 to-cyan-600 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path>
+                        </svg>
+                        <div class="absolute top-2 right-2 bg-white rounded-full p-2">
+                            <svg class="w-5 h-5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Shkolla e Gjuhëve "Fluent"</h3>
+                        <p class="text-gray-600 mb-4">
+                            Krijuam një uebfaqe të re dhe një strategji të marketingut me përmbajtje që rriti regjistrimet e studentëve me 85% brenda 6 muajve.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-indigo-100 text-indigo-600 text-xs font-medium px-3 py-1 rounded-full">Uebfaqe</span>
+                            <span class="bg-indigo-100 text-indigo-600 text-xs font-medium px-3 py-1 rounded-full">Marketingu i Përmbajtjes</span>
+                            <span class="bg-indigo-100 text-indigo-600 text-xs font-medium px-3 py-1 rounded-full">SEO</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
+            
+            <div class="text-center mt-12">
+                <a href="#contact" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-block">
+                    Diskutoni Projektin Tuaj
+                </a>
+            </div>
+        </div>
+    </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="section">
-            <div class="container">
-                <h2 class="fade-in">Na Kontaktoni</h2>
-                <div class="contact-content">
-                    <div class="contact-form fade-in">
-                        <h3>Dërgo Një Mesazh</h3>
-                        <form action="https://formspree.io/f/your_form_id" method="POST"> <!-- Replace with your Formspree ID -->
-                            <div class="form-group">
-                                <label for="name">Emri dhe Mbiemri:</label>
-                                <input type="text" id="name" name="name" required placeholder="Shkruaj emrin tuaj">
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gradient-to-br from-indigo-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Çfarë Thonë Klientët Tanë</h2>
+                <div class="w-24 h-1 bg-indigo-600 mx-auto mt-4 mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Dëgjoni nga klientët tanë të kënaqur se si i kemi ndihmuar ata të arrijnë objektivat e tyre të biznesit.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-8 relative">
+                    <div class="absolute -top-5 left-8 bg-indigo-600 text-white rounded-full w-10 h-10 flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/4 mb-6 md:mb-0 flex justify-center">
+                            <div class="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center">
+                                <svg class="w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                </svg>
                             </div>
-                            <div class="form-group">
-                                <label for="email">Emaili:</label>
-                                <input type="email" id="email" name="email" required placeholder="Shkruaj emailin tuaj">
+                        </div>
+                        <div class="md:w-3/4 md:pl-6">
+                            <p class="text-gray-600 italic mb-4">
+                                "DigjitalPro ka transformuar plotësisht praninë tonë online. Uebfaqja e re dhe strategjia e mediave sociale kanë sjellë më shumë klientë dhe kanë rritur shitjet tona me mbi 50%. Jam shumë i kënaqur me rezultatet!"
+                            </p>
+                            <h4 class="text-lg font-semibold text-gray-800">Arben Krasniqi</h4>
+                            <p class="text-gray-500">Pronar, Kafeneja "Aroma"</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <p class="text-gray-600 italic mb-4">
+                            "Ekipi i DigjitalPro është jashtëzakonisht profesional dhe i përkushtuar. Ata kanë krijuar një dyqan online që është i lehtë për t'u përdorur dhe ka rritur ndjeshëm shitjet tona."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                </svg>
                             </div>
-                            <div class="form-group">
-                                <label for="subject">Subjekti:</label>
-                                <input type="text" id="subject" name="_subject" placeholder="P.sh. Kërkesë për Uebfaqe">
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Vjollca Berisha</h4>
+                                <p class="text-gray-500 text-sm">Pronare, Butiku "Eleganca"</p>
                             </div>
-                            <div class="form-group">
-                                <label for="message">Mesazhi:</label>
-                                <textarea id="message" name="message" rows="5" required placeholder="Shkruaj mesazhin tuaj këtu..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <p class="text-gray-600 italic mb-4">
+                            "Falë DigjitalPro, shkolla jonë ka parë një rritje të jashtëzakonshme në regjistrimet e studentëve. Strategjia e tyre e marketingut me përmbajtje dhe optimizimi për motorët e kërkimit kanë qenë thelbësore për suksesin tonë."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                </svg>
                             </div>
-                            <button type="submit" class="btn">Dërgo Mesazhin</button>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Driton Hoxha</h4>
+                                <p class="text-gray-500 text-sm">Drejtor, Shkolla e Gjuhëve "Fluent"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Na Kontaktoni</h2>
+                <div class="w-24 h-1 bg-indigo-600 mx-auto mt-4 mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Jemi këtu për t'ju ndihmuar të rritni biznesin tuaj. Na kontaktoni sot për një konsultim falas.
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-8">
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Na Dërgoni një Mesazh</h3>
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-gray-700 font-medium mb-2">Emri</label>
+                                    <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent" placeholder="Emri juaj" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent" placeholder="email@juaj.com" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">Subjekti</label>
+                                <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent" placeholder="Subjekti i mesazhit" required>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Mesazhi</label>
+                                <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent" placeholder="Shkruani mesazhin tuaj këtu..." required></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-6 rounded-lg transition-colors">
+                                    Dërgo Mesazhin
+                                </button>
+                            </div>
                         </form>
                     </div>
-                    <div class="contact-info fade-in">
-                        <h3>Informacion Kontakti</h3>
-                        <div class="info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p>Rruga "Luan Haradinaj", Nr. 123, Prishtinë, Kosovë</p>
+                </div>
+                
+                <div class="lg:w-1/2 lg:pl-8">
+                    <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl shadow-lg p-8 text-white h-full">
+                        <h3 class="text-2xl font-semibold mb-6">Informacione Kontakti</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-white/20 rounded-full p-3 mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium mb-1">Adresa</h4>
+                                    <p class="opacity-90">Rruga "Agim Ramadani", Nr. 23<br>Prishtinë, 10000, Kosovë</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white/20 rounded-full p-3 mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium mb-1">Telefoni</h4>
+                                    <p class="opacity-90">+383 44 123 456</p>
+                                    <p class="opacity-90">+383 49 789 012</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white/20 rounded-full p-3 mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium mb-1">Email</h4>
+                                    <p class="opacity-90">info@digjitalpro.com</p>
+                                    <p class="opacity-90">kontakt@digjitalpro.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white/20 rounded-full p-3 mr-4">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium mb-1">Orari i Punës</h4>
+                                    <p class="opacity-90">E Hënë - E Premte: 9:00 - 17:00</p>
+                                    <p class="opacity-90">E Shtunë: 10:00 - 14:00</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="info-item">
-                            <i class="fas fa-phone-alt"></i>
-                            <p>+383 4X 123 456</p>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-envelope"></i>
-                            <p>info@digjitalpro.com</p>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-clock"></i>
-                            <p>E Hënë - E Premte: 09:00 - 17:00</p>
+                        
+                        <div class="mt-8 flex space-x-4">
+                            <a href="#" class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer>
-        <p>© 2023 DigjitalPro. Të gjitha të drejtat e rezervuara.</p>
-    </footer>
-
-    <!-- Floating Social Media Icons -->
-    <div class="floating-icons">
-        <a href="https://www.facebook.com/DigjitalPro" target="_blank" aria-label="DigjitalPro Facebook" class="icon facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/DigjitalPro" target="_blank" aria-label="DigjitalPro Instagram" class="icon instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/3834X123456" target="_blank" aria-label="DigjitalPro WhatsApp" class="icon whatsapp"><i class="fab fa-whatsapp"></i></a>
-    </div>
-
-    <!-- JavaScript Starts Here -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const sections = document.querySelectorAll('main section');
-            const hamburgerMenu = document.getElementById('hamburger-menu');
-            const navUl = document.getElementById('nav-links');
-
-            // Smooth scrolling for navigation links
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetSection = document.querySelector(targetId);
-                    
-                    if (targetSection) {
-                        const headerOffset = document.querySelector('header').offsetHeight; // Get header height
-                        const elementPosition = targetSection.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 20; // Add some padding
-
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-
-                        // Close mobile nav if open
-                        if (navUl.classList.contains('active')) {
-                            navUl.classList.remove('active');
-                            hamburgerMenu.querySelector('i').classList.remove('fa-times');
-                            hamburgerMenu.querySelector('i').classList.add('fa-bars');
-                        }
-                    }
-                });
-            });
-
-            // Hamburger menu toggle for mobile
-            hamburgerMenu.addEventListener('click', () => {
-                navUl.classList.toggle('active');
-                hamburgerMenu.querySelector('i').classList.toggle('fa-bars');
-                hamburgerMenu.querySelector('i').classList.toggle('fa-times');
-            });
-
-            // Intersection Observer for scroll reveal animations
-            const fadeInElements = document.querySelectorAll('.fade-in');
-
-            const observerOptions = {
-                root: null, // viewport
-                rootMargin: '0px',
-                threshold: 0.1 // 10% of the element must be visible
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Stop observing once animated
-                    }
-                });
-            }, observerOptions);
-
-            fadeInElements.forEach(el => {
-                observer.observe(el);
-            });
-
-            // Highlight active navigation link on scroll
-            const activateNavLink = () => {
-                let current = '';
-
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - document.querySelector('header').offsetHeight - 50; // Adjust for header height and some padding
-                    const sectionHeight = section.clientHeight;
-                    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').includes(current)) {
-                        link.classList.add('active');
-                    }
-                });
-            };
-
-            // Initial call and on scroll
-            activateNavLink();
-            window.addEventListener('scroll', activateNavLink);
-        });
-    </script>
-    <!-- JavaScript Ends Here -->
-</body>
-</html>
+    <footer class="bg-gray-800 text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <svg class="w-8 h-8 text-indigo-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94d59ab2b462424b',t:'MTc0OTUyNDI3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
