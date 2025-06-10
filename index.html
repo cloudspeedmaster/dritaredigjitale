@@ -3,32 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agjencia Dixhitale "Dritare Dixhitale" - Shqipëri</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>DigjitalPro - Agjencia Juaj e Marketingut Digjital në Kosovë</title>
+    <!-- Google Fonts: Montserrat (for headings) and Poppins (for body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
-        /*
-        -------------------------------------------------------------
-        CSS KODI (I përfshirë direkt në këtë HTML)
-        Temë e lehtë me thekse të ndritshme.
-        -------------------------------------------------------------
-        */
+        /* CSS Starts Here */
 
         :root {
-            --primary-color: #007bff; /* Blue */
-            --secondary-color: #6c757d; /* Gray */
-            --light-bg: #f8f9fa; /* Very light gray */
-            --lighter-bg: #ffffff; /* Pure white */
-            --text-dark: #343a40; /* Dark gray */
-            --text-muted: #6c757d; /* Muted gray */
-            --accent-color: #28a745; /* Green for highlights/buttons */
-            --accent-glow: #00bcd4; /* Cyan for subtle glow */
-            --gradient-background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%); /* Light blue to purple */
-            --box-shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --border-light: #e9ecef; /* Lighter border */
+            --primary-color: #007bff; /* Bright Blue */
+            --secondary-color: #6c757d; /* Muted Grey */
+            --accent-color: #28a745; /* Green Accent */
+            --dark-color: #343a40; /* Dark Grey/Black */
+            --light-color: #f8f9fa; /* Off White */
+            --white-color: #ffffff;
+            --gradient-start: #0056b3;
+            --gradient-end: #007bff;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
         }
 
+        /* Base Styles & Resets */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -41,10 +38,51 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--light-bg);
-            color: var(--text-dark);
             line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
             overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
         }
 
         .container {
@@ -53,316 +91,254 @@
             padding: 0 20px;
         }
 
-        /* Header & Navigacion */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            color: var(--white-color);
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: var(--box-shadow);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            opacity: 0.9;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+        }
+        .fade-in.visible {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Header & Navigation */
         header {
-            background-color: var(--lighter-bg);
-            padding: 15px 0;
+            background-color: var(--white-color);
+            padding: 1rem 0;
+            box-shadow: var(--box-shadow);
             position: sticky;
             top: 0;
+            left: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: var(--box-shadow-light);
-            border-bottom: 1px solid var(--border-light);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         .logo {
             font-family: 'Montserrat', sans-serif;
-            font-size: 28px;
+            font-size: 2rem;
             font-weight: 700;
             color: var(--primary-color);
-            text-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
         }
 
-        .nav-links {
-            list-style: none;
+        nav ul {
             display: flex;
         }
 
-        .nav-links li {
+        nav ul li {
             margin-left: 30px;
         }
 
-        .nav-links a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 17px;
+        nav ul li a {
+            color: var(--dark-color);
+            font-weight: 500;
             padding: 5px 0;
             position: relative;
-            transition: color 0.3s ease;
         }
 
-        .nav-links a::after {
+        nav ul li a::after {
             content: '';
             position: absolute;
-            width: 0;
-            height: 3px;
-            background-color: var(--accent-color);
-            left: 50%;
-            bottom: -5px;
-            transform: translateX(-50%);
+            left: 0;
+            bottom: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--primary-color);
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--accent-color);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
             width: 100%;
         }
+        
+        nav ul li a.active {
+            color: var(--primary-color);
+        }
 
-        /* Hero Section */
-        #home {
-            background: var(--gradient-background);
-            color: #fff;
-            min-height: calc(100vh - 75px); /* Adjust for header height */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--dark-color);
+        }
+
+        /* Hero Section (Ballina) */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/random/1920x1080/?digital-marketing-agency,kosovo') no-repeat center center/cover;
+            color: var(--white-color);
+            min-height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            position: relative;
-            overflow: hidden; /* For floating objects */
-            padding-top: 80px; /* Adjust for fixed header */
-        }
-
-        .hero-content {
-            z-index: 10;
-            position: relative;
-            color: #fff; /* Ensure text is white on dark gradient */
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .hero-content h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 5.5vw; /* Responsive font size */
-            margin-bottom: 20px;
-            line-height: 1.1;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            animation: textGlow 2s infinite alternate;
-        }
-
-        @keyframes textGlow {
-            from { text-shadow: 0 0 10px rgba(255,255,255,0.3), 0 0 20px rgba(255,255,255,0.2); }
-            to { text-shadow: 0 0 20px rgba(255,255,255,0.4), 0 0 30px rgba(255,255,255,0.3); }
-        }
-
-        .hero-content p {
-            font-size: 1.8vw; /* Responsive font size */
-            margin-bottom: 40px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.9;
-        }
-
-        .btn {
-            background-color: var(--accent-color);
-            color: #fff;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 18px;
-            transition: all 0.3s ease;
+            padding: 50px 20px;
             position: relative;
             overflow: hidden;
-            display: inline-block;
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
         }
 
-        .btn::before {
+        .hero::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300%;
-            height: 300%;
-            background: rgba(255, 255, 255, 0.15);
-            transition: all 0.7s ease-in-out;
-            border-radius: 50%;
-            z-index: 0;
-            transform: translate(-50%, -50%) scale(0);
-        }
-
-        .btn:hover::before {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 0;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.6);
-        }
-
-        /* Floating Objects (vetëm në faqen Home) */
-        .floating-object {
-            position: absolute;
-            animation-duration: 15s;
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: infinite;
-            opacity: 0.1; /* More subtle for light theme */
-            filter: blur(2px);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(0, 123, 255, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at bottom right, rgba(40, 167, 69, 0.3) 0%, transparent 50%);
             z-index: 1;
         }
 
-        .floating-object.circle {
-            width: 100px;
-            height: 100px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation-name: floatAnimationOne;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out 0.3s forwards;
         }
 
-        .floating-object.square {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.08);
-            transform: rotate(45deg);
-            animation-name: floatAnimationTwo;
+        .hero-content h1 {
+            font-size: 3.8rem;
+            margin-bottom: 1rem;
+            color: var(--white-color);
         }
 
-        .floating-object.triangle {
-            width: 0;
-            height: 0;
-            border-left: 50px solid transparent;
-            border-right: 50px solid transparent;
-            border-bottom: 80px solid rgba(255, 255, 255, 0.06);
-            animation-name: floatAnimationThree;
-        }
-
-        @keyframes floatAnimationOne {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.1; }
-            50% { transform: translate(50px, 30px) rotate(180deg); opacity: 0.15; }
-            100% { transform: translate(0, 0) rotate(360deg); opacity: 0.1; }
-        }
-
-        @keyframes floatAnimationTwo {
-            0% { transform: translate(0, 0) rotate(45deg); opacity: 0.08; }
-            50% { transform: translate(-40px, -20px) rotate(225deg); opacity: 0.12; }
-            100% { transform: translate(0, 0) rotate(405deg); opacity: 0.08; }
-        }
-
-        @keyframes floatAnimationThree {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.06; }
-            50% { transform: translate(30px, -50px) rotate(180deg); opacity: 0.1; }
-            100% { transform: translate(0, 0) rotate(360deg); opacity: 0.06; }
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
         }
 
         /* General Section Styling */
-        section {
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-            background-color: var(--light-bg);
+        .section {
+            padding: 80px 0;
+            background-color: var(--white-color);
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:nth-child(even) {
+            background-color: var(--light-color);
+        }
+
+        /* About Section */
+        .about-content {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
+            gap: 40px;
+            text-align: left;
         }
 
-        section:nth-of-type(even) {
-            background-color: var(--lighter-bg);
+        .about-text, .about-image {
+            flex: 1;
+            min-width: 300px;
         }
 
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 48px;
-            text-align: center;
-            margin-bottom: 60px;
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
             color: var(--primary-color);
-            position: relative;
-            padding-bottom: 10px;
-            display: inline-block;
-            width: 100%;
         }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background: var(--accent-color);
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 0;
-            border-radius: 2px;
+        .about-text p {
+            margin-bottom: 1rem;
         }
 
-        /* Shërbimet Section */
+        /* Services Section */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
-        .service-item {
-            background-color: var(--lighter-bg);
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            border: 1px solid var(--border-light);
-            position: relative;
-            box-shadow: var(--box-shadow-light);
-        }
-
-        .service-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-            border-color: var(--primary-color);
-        }
-
-        .service-item h3 {
-            font-size: 26px;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-
-        .service-item p {
-            color: var(--text-muted);
-        }
-
-        /* Pse Ne Section */
-        .why-us-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            text-align: center;
-        }
-
-        .why-us-item {
-            background-color: var(--lighter-bg);
+        .service-card {
+            background-color: var(--white-color);
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--box-shadow-light);
-            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0e0e0;
         }
 
-        .why-us-item:hover {
-            transform: scale(1.03);
-            background-color: var(--light-bg);
-            border-color: var(--accent-color);
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
-        .why-us-item h3 {
+        .service-card i {
+            font-size: 3.5rem;
             color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
             margin-bottom: 15px;
-            font-size: 24px;
+            color: var(--dark-color);
         }
 
-        .why-us-item p {
-            color: var(--text-muted);
-        }
-
-        /* Portofolio Section */
+        /* Portfolio Section */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -370,70 +346,63 @@
         }
 
         .portfolio-item {
-            background-color: var(--lighter-bg);
-            border-radius: 15px;
+            background-color: var(--white-color);
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: var(--box-shadow-light);
+            box-shadow: var(--box-shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            border: 1px solid var(--border-light);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
         }
 
         .portfolio-item img {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
-            border-bottom: 1px solid var(--border-light);
+            display: block;
+            transition: transform 0.4s ease;
         }
 
-        .portfolio-item-info {
-            padding: 25px;
-            text-align: center;
+        .portfolio-item:hover img {
+            transform: scale(1.05);
         }
 
-        .portfolio-item-info h3 {
-            font-size: 24px;
-            color: var(--primary-color);
+        .portfolio-content {
+            padding: 20px;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.3rem;
             margin-bottom: 10px;
+            color: var(--primary-color);
         }
 
-        .portfolio-item-info p {
-            color: var(--text-muted);
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        .portfolio-content p {
+            font-size: 0.95rem;
+            color: var(--secondary-color);
         }
 
         /* Contact Section */
-        #contact {
-            background: linear-gradient(to right, var(--lighter-bg), var(--light-bg));
-        }
-
         .contact-content {
             display: flex;
             flex-wrap: wrap;
-            gap: 50px;
-            justify-content: center;
-            align-items: flex-start;
+            gap: 40px;
+            justify-content: space-between;
         }
 
         .contact-form, .contact-info {
             flex: 1;
             min-width: 300px;
-            background-color: var(--lighter-bg);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: var(--box-shadow-light);
-            border: 1px solid var(--border-light);
         }
 
-        .contact-form h3, .contact-info h3 {
-            font-size: 28px;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            text-align: center;
+        .contact-form {
+            background-color: var(--white-color);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
         }
 
         .form-group {
@@ -443,19 +412,18 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: var(--text-dark);
-            font-weight: 600;
+            font-weight: 500;
+            color: var(--dark-color);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 15px;
-            border: 1px solid var(--border-light);
-            border-radius: 8px;
-            background-color: var(--light-bg);
-            color: var(--text-dark);
-            font-size: 16px;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: var(--border-radius);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -463,7 +431,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
         }
 
         .form-group textarea {
@@ -471,399 +439,451 @@
             min-height: 120px;
         }
 
-        .contact-info p {
-            margin-bottom: 15px;
-            color: var(--text-muted);
+        .contact-info {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info h3 {
+            color: var(--white-color);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
             display: flex;
             align-items: center;
+            margin-bottom: 15px;
         }
 
-        .contact-info p strong {
-            color: var(--text-dark);
-            margin-right: 10px;
-        }
-
-        .social-links {
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .social-links a {
-            display: inline-block;
-            margin: 0 10px;
-            color: var(--primary-color);
-            font-size: 28px;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .social-links a:hover {
+        .info-item i {
+            font-size: 1.5rem;
+            margin-right: 15px;
             color: var(--accent-color);
-            transform: translateY(-5px);
+        }
+
+        .info-item p {
+            font-size: 1.1rem;
         }
 
         /* Footer */
         footer {
-            background-color: var(--lighter-bg);
-            color: var(--text-muted);
+            background-color: var(--dark-color);
+            color: var(--white-color);
             text-align: center;
-            padding: 30px 0;
-            border-top: 1px solid var(--border-light);
+            padding: 2.5rem 20px;
+            font-size: 0.9rem;
         }
 
-        /* Scroll Animations */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
+        footer p {
+            margin: 0;
         }
 
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
+        /* Floating Social Icons */
+        .floating-icons {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .animate-on-scroll.delay-1 { transition-delay: 0.1s; }
-        .animate-on-scroll.delay-2 { transition-delay: 0.2s; }
-        .animate-on-scroll.delay-3 { transition-delay: 0.3s; }
-        .animate-on-scroll.delay-4 { transition-delay: 0.4s; }
-        .animate-on-scroll.delay-5 { transition-delay: 0.5s; }
-        .animate-on-scroll.delay-6 { transition-delay: 0.6s; }
+        .floating-icons .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: var(--white-color);
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            animation: floating 3s ease-in-out infinite; /* Floating animation */
+        }
 
-        /* Media Queries for Responsiveness */
+        .floating-icons .icon:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .floating-icons .facebook { background-color: #3b5998; }
+        .floating-icons .instagram { background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+        .floating-icons .whatsapp { background-color: #25d366; }
+
+        /* Responsive Design */
         @media (max-width: 992px) {
             .hero-content h1 {
-                font-size: 7vw;
+                font-size: 3rem;
             }
             .hero-content p {
-                font-size: 2.5vw;
+                font-size: 1.1rem;
             }
-            .services-grid, .why-us-grid, .portfolio-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 76px; /* Height of header */
+                left: 0;
+                width: 100%;
+                background-color: var(--white-color);
+                box-shadow: var(--box-shadow);
+                padding: 20px 0;
+                text-align: center;
             }
-            h2 {
-                font-size: 40px;
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .about-content, .contact-content {
+                flex-direction: column;
+            }
+
+            .about-text, .about-image, .contact-form, .contact-info {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .contact-info {
+                margin-top: 20px;
             }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* Simple hiding for mobile, for a real project use a hamburger menu */
+            h2 {
+                font-size: 2rem;
             }
+
             .hero-content h1 {
-                font-size: 10vw;
+                font-size: 2.5rem;
             }
             .hero-content p {
-                font-size: 4vw;
+                font-size: 1rem;
             }
-            .btn {
-                font-size: 16px;
-                padding: 12px 25px;
+
+            .section {
+                padding: 60px 0;
             }
-            h2 {
-                font-size: 32px;
-                margin-bottom: 40px;
-            }
-            section {
-                padding: 80px 0;
-            }
-            .contact-content {
-                flex-direction: column;
-                align-items: center;
-            }
-            .contact-form, .contact-info {
-                min-width: unset;
-                width: 100%;
+
+            .services-grid, .portfolio-grid {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 480px) {
             .logo {
-                font-size: 22px;
+                font-size: 1.8rem;
             }
+
             .hero-content h1 {
-                font-size: 12vw;
+                font-size: 2rem;
             }
-            .hero-content p {
-                font-size: 4.5vw;
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
             }
-            .service-item, .why-us-item, .portfolio-item {
-                padding: 25px;
-            }
-            .service-item h3 {
-                font-size: 22px;
-            }
-            .why-us-item h3 {
-                font-size: 20px;
-            }
-            .portfolio-item-info h3 {
-                font-size: 20px;
-            }
-            h2 {
-                font-size: 28px;
+
+            .service-card, .portfolio-item, .contact-form, .contact-info {
+                padding: 20px;
             }
         }
+        /* CSS Ends Here */
     </style>
 </head>
 <body>
-    <!-- HEADER & NAVIGACION -->
+    <!-- Header -->
     <header>
-        <div class="container">
-            <nav>
-                <div class="logo">Dritare Dixhitale</div>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active">Ballina</a></li>
-                    <li><a href="#services">Shërbimet</a></li> <!-- Lidhje brenda faqes -->
-                    <li><a href="#why-us">Pse Ne?</a></li> <!-- Lidhje brenda faqes -->
-                    <li><a href="#portfolio">Portofolio</a></li> <!-- Lidhje brenda faqes -->
-                    <li><a href="#contact">Kontakti</a></li> <!-- Lidhje brenda faqes -->
-                </ul>
-            </nav>
-        </div>
+        <nav>
+            <div class="logo">DigjitalPro</div>
+            <ul id="nav-links">
+                <li><a href="#home" class="nav-link active">Ballina</a></li>
+                <li><a href="#about" class="nav-link">Rreth Nesh</a></li>
+                <li><a href="#services" class="nav-link">Shërbimet</a></li>
+                <li><a href="#portfolio" class="nav-link">Puna Jonë</a></li>
+                <li><a href="#contact" class="nav-link">Kontakti</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
     </header>
 
-    <!-- SEKSIONI HOME (BALLINA) -->
-    <section id="home">
-        <div class="container hero-content">
-            <h1 class="animate-on-scroll">Transformojmë Biznesin Tuaj Dixhitalisht</h1>
-            <p class="animate-on-scroll delay-1">Agjencia juaj e besueshme e marketingut dixhital në Shqipëri, duke ofruar zgjidhje inovative për rritje reale.</p>
-            <a href="#services" class="btn animate-on-scroll delay-2">Zbuloni Shërbimet Tona</a>
-        </div>
-
-        <!-- Objekte Fluturuese (vetëm në faqen kryesore) -->
-        <div class="floating-object circle" style="top: 10%; left: 15%; animation-delay: 0s;"></div>
-        <div class="floating-object square" style="top: 25%; right: 10%; animation-delay: 2s;"></div>
-        <div class="floating-object triangle" style="bottom: 10%; left: 5%; animation-delay: 4s;"></div>
-        <div class="floating-object circle" style="top: 70%; left: 30%; animation-delay: 6s; width: 60px; height: 60px;"></div>
-        <div class="floating-object square" style="bottom: 20%; right: 25%; animation-delay: 8s; width: 50px; height: 50px;"></div>
-        <div class="floating-object triangle" style="top: 5%; right: 40%; animation-delay: 10s; transform: scale(0.8);"></div>
-        <div class="floating-object circle" style="top: 40%; right: 5%; animation-delay: 12s; width: 120px; height: 120px;"></div>
-        <div class="floating-object square" style="bottom: 5%; left: 45%; animation-delay: 14s; width: 90px; height: 90px;"></div>
-    </section>
-
-    <!-- SEKSIONI I SHËRBIMEVE -->
-    <section id="services">
-        <div class="container">
-            <h2 class="animate-on-scroll">Shërbimet Tona Kryesore</h2>
-            <div class="services-grid">
-                <div class="service-item animate-on-scroll delay-1">
-                    <h3>SEO & Optimizim</h3>
-                    <p>Rrisni dukshmërinë tuaj në motorët e kërkimit dhe tërhiqni më shumë trafik organik.</p>
-                </div>
-                <div class="service-item animate-on-scroll delay-2">
-                    <h3>Marketing në Rrjete Sociale</h3>
-                    <p>Ndërtoni një prani të fortë në rrjetet sociale, angazhoni audiencën dhe rritni markën tuaj.</p>
-                </div>
-                <div class="service-item animate-on-scroll delay-3">
-                    <h3>Reklamim PPC</h3>
-                    <p>Krijoni dhe menaxhoni fushata të suksesshme me pagesë për klikim (PPC) në Google Ads dhe Meta Ads.</p>
-                </div>
-                <div class="service-item animate-on-scroll delay-4">
-                    <h3>Marketing me Përmbajtje</h3>
-                    <p>Krijoni përmbajtje të vlefshme dhe bindëse që tërheq, angazhon dhe shndërron.</p>
-                </div>
-                <div class="service-item animate-on-scroll delay-5">
-                    <h3>Dizajn & Zhvillim Ueb</h3>
-                    <p>Krijojmë faqe interneti funksionale dhe tërheqëse, të optimizuara për performancë.</p>
-                </div>
-                <div class="service-item animate-on-scroll delay-6">
-                    <h3>Marketing me Email</h3>
-                    <p>Ndërtoni lista, segmentoni audiencën dhe dërgoni fushata emaili efikase.</p>
-                </div>
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Rritni Biznesin Tuaj Online me DigjitalPro!</h1>
+                <p>Partneri Juaj i Besueshëm për Marketing Digjital në Kosovë. Ne krijojmë uebfaqe, menaxhojmë rrjetet sociale dhe rrisim praninë tuaj digjitale.</p>
+                <a href="#services" class="btn">Zbuloni Shërbimet Tona</a>
+                <a href="#contact" class="btn btn-outline" style="margin-left: 15px;">Na Kontaktoni</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- SEKSIONI PSE NE? -->
-    <section id="why-us">
-        <div class="container">
-            <h2 class="animate-on-scroll">Pse të Zgjidhni "Dritare Dixhitale"?</h2>
-            <div class="why-us-grid">
-                <div class="why-us-item animate-on-scroll delay-1">
-                    <h3>Ekspertizë Lokale</h3>
-                    <p>Njohim thellësisht tregun shqiptar dhe sjellim zgjidhje të personalizuara.</p>
-                </div>
-                <div class="why-us-item animate-on-scroll delay-2">
-                    <h3>Rezultate të Matshme</h3>
-                    <p>Fokusohemi në kthimin e investimit (ROI) dhe raportojmë me transparencë të plotë.</p>
-                </div>
-                <div class="why-us-item animate-on-scroll delay-3">
-                    <h3>Qasje Inovative</h3>
-                    <p>Jemi gjithmonë në kërkim të tendencave dhe teknologjive më të fundit në marketingun dixhital.</p>
-                </div>
-                <div class="why-us-item animate-on-scroll delay-4">
-                    <h3>Mbështetje e Dedikuar</h3>
-                    <p>Ekipi ynë është i përkushtuar për të ofruar shërbim të shkëlqyer dhe mbështetje të vazhdueshme.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SEKSIONI PORTOFOLIO (Shembuj) -->
-    <section id="portfolio">
-        <div class="container">
-            <h2 class="animate-on-scroll">Disa nga Punët Tona</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item animate-on-scroll delay-1">
-                    <img src="https://via.placeholder.com/400x200/007bff/ffffff?text=Fushata+Klienti+A" alt="Fushata Dixhitale Klienti A">
-                    <div class="portfolio-item-info">
-                        <h3>Klienti A - Rritje Trafiku +80%</h3>
-                        <p>Një fushatë SEO dhe PPC që çoi në rritje të konsiderueshme të trafikut.</p>
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="fade-in">Rreth Nesh</h2>
+                <div class="about-content fade-in">
+                    <div class="about-text">
+                        <h3>Kush Jemi Ne?</h3>
+                        <p>DigjitalPro është një agjenci e marketingut digjital e dedikuar për të ndihmuar bizneset e vogla dhe të mesme në Kosovë të lulëzojnë në peizazhin digjital. Ne besojmë se çdo biznes meriton një prani të fortë online dhe jemi këtu për t'ju udhëhequr në këtë rrugëtim.</p>
+                        <p>Me një ekip profesionistësh të apasionuar pas inovacionit dhe rezultateve, ne punojmë ngushtë me klientët tanë për të kuptuar nevojat e tyre unike dhe për të zhvilluar strategji të personalizuara që japin impakt real.</p>
+                        <p>Misioni ynë është të thjeshtojmë marketingun digjital për ju, duke ju lejuar të përqëndroheni në atë që bëni më mirë: drejtimin e biznesit tuaj.</p>
                     </div>
-                </div>
-                <div class="portfolio-item animate-on-scroll delay-2">
-                    <img src="https://via.placeholder.com/400x200/28a745/ffffff?text=Rrjetet+Sociale+Klienti+B" alt="Fushata Rrjetet Sociale Klienti B">
-                    <div class="portfolio-item-info">
-                        <h3>Klienti B - Angazhim në Sociale +150%</h3>
-                        <p>Strategji të suksesshme të marketingut në rrjetet sociale.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item animate-on-scroll delay-3">
-                    <img src="https://via.placeholder.com/400x200/17a2b8/ffffff?text=Dizajn+Ueb+Klienti+C" alt="Dizajn Ueb Klienti C">
-                    <div class="portfolio-item-info">
-                        <h3>Klienti C - Faqe E-commerce Re-design</h3>
-                        <p>Krijimi i një faqeje të re e-commerce me performancë të lartë.</p>
-                    </div>
-                </div>
-                 <div class="portfolio-item animate-on-scroll delay-4">
-                    <img src="https://via.placeholder.com/400x200/ffc107/343a40?text=Fushata+Email+Klienti+D" alt="Fushata Email Klienti D">
-                    <div class="portfolio-item-info">
-                        <h3>Klienti D - Optimizim Email Marketing</h3>
-                        <p>Rritje e hapjeve dhe klikimeve të fushatave me email me +40%.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item animate-on-scroll delay-5">
-                    <img src="https://via.placeholder.com/400x200/dc3545/ffffff?text=Video+Marketing+Klienti+E" alt="Video Marketing Klienti E">
-                    <div class="portfolio-item-info">
-                        <h3>Klienti E - Strategji Video Marketing</h3>
-                        <p>Krijim dhe shpërndarje videosh që rritën ndërgjegjësimin e markës.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item animate-on-scroll delay-6">
-                    <img src="https://via.placeholder.com/400x200/6f42c1/ffffff?text=Branding+Klienti+F" alt="Branding Klienti F">
-                    <div class="portfolio-item-info">
-                        <h3>Klienti F - Brand Identity Komplete</h3>
-                        <p>Zhvillimi i një identiteti të ri marke nga logoja në strategjinë e komunikimit.</p>
+                    <div class="about-image">
+                        <img src="https://source.unsplash.com/random/600x400/?teamwork,office" alt="DigjitalPro Ekipi">
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- SEKSIONI I KONTAKTIT -->
-    <section id="contact">
-        <div class="container">
-            <h2 class="animate-on-scroll">Na Kontaktoni</h2>
-            <div class="contact-content">
-                <div class="contact-form animate-on-scroll delay-1">
-                    <h3>Dërgoni një Mesazh</h3>
-                    <form action="#" method="POST">
-                        <div class="form-group">
-                            <label for="name">Emri i plotë:</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Emaili:</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subjekti:</label>
-                            <input type="text" id="subject" name="subject">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mesazhi:</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Dërgo Mesazhin</button>
-                    </form>
-                </div>
-                <div class="contact-info animate-on-scroll delay-2">
-                    <h3>Informacione Kontakti</h3>
-                    <p><strong>Adresa:</strong> Rruga "Mustafa Matohiti", Nr. 12, Tiranë, Shqipëri</p>
-                    <p><strong>Telefoni:</strong> +355 6x xxx xxxx</p>
-                    <p><strong>Emaili:</strong> info@dritaredigjitale.al</p>
-                    <div class="social-links">
-                        <a href="https://facebook.com/dritaredigjitale" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://instagram.com/dritaredigjitale" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://linkedin.com/company/dritaredigjitale" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://twitter.com/dritaredigjitale" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <!-- Services Section -->
+        <section id="services" class="section">
+            <div class="container">
+                <h2 class="fade-in">Shërbimet Tona</h2>
+                <div class="services-grid">
+                    <div class="service-card fade-in">
+                        <i class="fas fa-globe"></i>
+                        <h3>Krijimi i Uebfaqeve</h3>
+                        <p>Ndërtojmë uebfaqe moderne, të përgjegjshme dhe funksionale, të optimizuara për performancë dhe lehtësi përdorimi.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <i class="fab fa-instagram"></i>
+                        <h3>Menaxhimi i Mediave Sociale</h3>
+                        <p>Krijojmë dhe ekzekutojmë strategji tërheqëse për rrjetet sociale, duke rritur angazhimin dhe ndjekësit tuaj.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <i class="fas fa-search"></i>
+                        <h3>Optimizimi SEO</h3>
+                        <p>Përmirësojmë dukshmërinë e uebfaqes tuaj në motorët e kërkimit (Google, Bing) për të tërhequr më shumë klientë potencialë.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <i class="fas fa-bullhorn"></i>
+                        <h3>Reklamimi Online (PPC)</h3>
+                        <p>Krijojmë dhe menaxhojmë fushata reklamimi të paguara në Google Ads, Facebook Ads dhe platforma të tjera.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h3>Marketingu i Përmbajtjes</h3>
+                        <p>Zhvillojmë përmbajtje cilësore (blogje, artikuj, video) që informon, argëton dhe tërheq audiencën tuaj.</p>
+                    </div>
+                    <div class="service-card fade-in">
+                        <i class="fas fa-comments"></i>
+                        <h3>Konsulencë Digjitale</h3>
+                        <p>Ofroni këshilla strategjike për të gjitha aspektet e marketingut tuaj digjital, nga planifikimi te zbatimi.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FOOTER -->
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="section">
+            <div class="container">
+                <h2 class="fade-in">Puna Jonë</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item fade-in">
+                        <img src="https://source.unsplash.com/random/400x250/?website-design,ecommerce" alt="E-commerce Website">
+                        <div class="portfolio-content">
+                            <h3>Uebfaqe E-commerce për "Dyqani Im"</h3>
+                            <p>Një platformë e-commerce e dizajnuar për shitjen e produkteve artizanale, me fokus në estetikë dhe lehtësi blerjeje.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item fade-in">
+                        <img src="https://source.unsplash.com/random/400x250/?social-media-marketing,restaurant" alt="Social Media Campaign">
+                        <div class="portfolio-content">
+                            <h3>Fushata Sociale për "Restorant Tradita"</h3>
+                            <p>Rritje prej 200% në angazhimin në Instagram dhe Facebook përmes përmbajtjes krijuese dhe reklamave të targetuara.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item fade-in">
+                        <img src="https://source.unsplash.com/random/400x250/?blogging,content-marketing" alt="Blog for Tech Startup">
+                        <div class="portfolio-content">
+                            <h3>Blog "Startup Tech Kosovo"</h3>
+                            <p>Krijimi dhe menaxhimi i blogut që pozicionon startup-in si lider mendimi në industrinë teknologjike.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item fade-in">
+                        <img src="https://source.unsplash.com/random/400x250/?local-business,seo" alt="Local SEO Strategy">
+                        <div class="portfolio-content">
+                            <h3>SEO Lokal për "Klinika Dentare Nova"</h3>
+                            <p>Optimizim për kërkime lokale, duke rritur numrin e rezervimeve online me 30%.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="fade-in">Na Kontaktoni</h2>
+                <div class="contact-content">
+                    <div class="contact-form fade-in">
+                        <h3>Dërgo Një Mesazh</h3>
+                        <form action="https://formspree.io/f/your_form_id" method="POST"> <!-- Replace with your Formspree ID -->
+                            <div class="form-group">
+                                <label for="name">Emri dhe Mbiemri:</label>
+                                <input type="text" id="name" name="name" required placeholder="Shkruaj emrin tuaj">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Emaili:</label>
+                                <input type="email" id="email" name="email" required placeholder="Shkruaj emailin tuaj">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subjekti:</label>
+                                <input type="text" id="subject" name="_subject" placeholder="P.sh. Kërkesë për Uebfaqe">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Mesazhi:</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Shkruaj mesazhin tuaj këtu..."></textarea>
+                            </div>
+                            <button type="submit" class="btn">Dërgo Mesazhin</button>
+                        </form>
+                    </div>
+                    <div class="contact-info fade-in">
+                        <h3>Informacion Kontakti</h3>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Rruga "Luan Haradinaj", Nr. 123, Prishtinë, Kosovë</p>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <p>+383 4X 123 456</p>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>info@digjitalpro.com</p>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <p>E Hënë - E Premte: 09:00 - 17:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>© 2023 Dritare Dixhitale. Të gjitha të drejtat të rezervuara.</p>
-        </div>
+        <p>© 2023 DigjitalPro. Të gjitha të drejtat e rezervuara.</p>
     </footer>
 
-    <!-- Font Awesome (për ikona) - Kërkohet për ikonat e rrjeteve sociale, por është një CDN e jashtme. Për kërkesën "të gjitha brenda një fajli", kjo do të duhej të shmangej ose ikonat të futeshin si SVG inline. Për hir të funksionalitetit, po e lë këtë këtu. -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Floating Social Media Icons -->
+    <div class="floating-icons">
+        <a href="https://www.facebook.com/DigjitalPro" target="_blank" aria-label="DigjitalPro Facebook" class="icon facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/DigjitalPro" target="_blank" aria-label="DigjitalPro Instagram" class="icon instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/3834X123456" target="_blank" aria-label="DigjitalPro WhatsApp" class="icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <!-- JavaScript Starts Here -->
     <script>
-        /*
-        -------------------------------------------------------------
-        JAVASCRIPT KODI (I përfshirë direkt në këtë HTML)
-        -------------------------------------------------------------
-        */
-
         document.addEventListener('DOMContentLoaded', () => {
-            // Highlight active navigation link
-            const currentPath = window.location.pathname.split('/').pop(); // Gets the filename
-            const navLinks = document.querySelectorAll('.nav-links a');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main section');
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const navUl = document.getElementById('nav-links');
 
+            // Smooth scrolling for navigation links
             navLinks.forEach(link => {
-                const href = link.getAttribute('href');
-                // For index.html: activate "Ballina" link if on index page or its variants
-                if ((currentPath === '' || currentPath === 'index.html') && (href === 'index.html' || href === '#home')) {
-                    link.classList.add('active');
-                } else if (href === currentPath) { // For sub-pages, handled by their own JS
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active'); // Remove active from others
-                }
-            });
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        const headerOffset = document.querySelector('header').offsetHeight; // Get header height
+                        const elementPosition = targetSection.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 20; // Add some padding
 
-            // Smooth Scroll for Navigation Links (ONLY on index.html for internal anchors)
-            if (currentPath === '' || currentPath === 'index.html') {
-                document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        const targetId = this.getAttribute('href');
-                        document.querySelector(targetId).scrollIntoView({
+                        window.scrollTo({
+                            top: offsetPosition,
                             behavior: 'smooth'
                         });
-                        // Opsionale: Update URL hash pa reload të faqes
-                        // history.pushState(null, null, targetId);
-                    });
+
+                        // Close mobile nav if open
+                        if (navUl.classList.contains('active')) {
+                            navUl.classList.remove('active');
+                            hamburgerMenu.querySelector('i').classList.remove('fa-times');
+                            hamburgerMenu.querySelector('i').classList.add('fa-bars');
+                        }
+                    }
                 });
-            }
+            });
 
+            // Hamburger menu toggle for mobile
+            hamburgerMenu.addEventListener('click', () => {
+                navUl.classList.toggle('active');
+                hamburgerMenu.querySelector('i').classList.toggle('fa-bars');
+                hamburgerMenu.querySelector('i').classList.toggle('fa-times');
+            });
 
-            // Animacionet e aktivizuara nga scroll-i duke përdorur IntersectionObserver
-            const animateElements = document.querySelectorAll('.animate-on-scroll');
+            // Intersection Observer for scroll reveal animations
+            const fadeInElements = document.querySelectorAll('.fade-in');
 
             const observerOptions = {
-                root: null, // relative to the viewport
+                root: null, // viewport
                 rootMargin: '0px',
-                threshold: 0.1 // Trigger when 10% of the element is visible
+                threshold: 0.1 // 10% of the element must be visible
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('animated');
-                        // Opsionale: Ndaloni vëzhgimin pasi të jetë animuar për të përmirësuar performancën
-                        observer.unobserve(entry.target);
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once animated
                     }
                 });
             }, observerOptions);
 
-            animateElements.forEach(element => {
-                observer.observe(element);
+            fadeInElements.forEach(el => {
+                observer.observe(el);
             });
+
+            // Highlight active navigation link on scroll
+            const activateNavLink = () => {
+                let current = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - document.querySelector('header').offsetHeight - 50; // Adjust for header height and some padding
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            // Initial call and on scroll
+            activateNavLink();
+            window.addEventListener('scroll', activateNavLink);
         });
     </script>
+    <!-- JavaScript Ends Here -->
 </body>
 </html>
